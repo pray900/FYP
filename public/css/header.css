@@ -1,0 +1,31 @@
+body{
+    margin: 0;
+}
+.header{
+    display: flex;
+    height:12vh;
+    border: solid black 5px;
+}
+.logo{
+    width: 20%;
+    background-color: grey;
+    align-items: center;
+    text-align: center;
+    border-right: solid black 5px;
+    font-family: Arial;
+}
+.title{
+    padding-left: 2vw;
+    width: 80%;
+    background-color: blue;
+    color: white;
+    border-left: solid black 5px;
+    font-family: Arial;
+    font-size: 30px;
+}
+p {
+    margin: 0;
+}
+#align {
+    margin-top: 3vh;
+}
