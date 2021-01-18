@@ -4,7 +4,25 @@ const app = express();
 const mysql = require('mysql');
 const bcrypt = require('bcrypt');
 const dotenv = require('dotenv');
-const cookieparser = require('cookie-parse');
+//const cookieparser = require('cookie-parser');
+
+const passport = require('passport');
+const initializepassport = require('./passport-config');
+const flash = require('express-flash');
+const session = require('express-session');
+
+if (process.env.NODE_ENV !== 'production'){
+    require('dotenv').config()
+}
+
+initializepassport(passport);
+app.use(flash());
+app.use(session({
+    secret: process.env.SESSION_SECRET,
+    resave: false,
+    saveUninitialized: false
+}))
+app.use(passport.session());
 
 const path = require('path');
 const port = 3000;
@@ -15,13 +33,13 @@ app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname,'./views'));
 app.use(express.static(path.join(__dirname + '/public')));
 
-dotenv.config({path: './.env'});
+//dotenv.config({path: './.env'});
 
 
 app.use(express.urlencoded({ extended: false}));
 app.use(express.json());
 
-app.use(cookieparser());
+//app.use(cookieparser());
 
 const db = mysql.createConnection({
     host:"localhost",

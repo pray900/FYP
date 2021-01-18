@@ -22,7 +22,10 @@
                 <label id="pwd" for="password">Password:</label><br>
                 <input type="password" id="password" name="password"><br>
                 <input id="loginbtn" type="submit" value="Login">
-            </form>
+            </form>  
+            <% if (messages.error) {%>
+            <%= messages.error %>
+            <% } %>        
         </div>
         <div class="forgotpwd">
             <p>For owners only:</p>

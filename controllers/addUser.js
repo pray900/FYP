@@ -14,12 +14,12 @@ exports.register = (req,res) => {
 
     const { name, email, username, password, repassword, type} = req.body;
 
-    db.query('select email from login where email = ?', [email], async (error, result) => {
+    db.query('select email, username from login where email = ? or username = ?', [email, username], async (error, result) => {
         if(error){
             console.log("error is"+error);
         }
-        if(result.length > 0 ){
-            console.log('email already used');
+        if(result.length > 0){
+            console.log('email or username already used');
             return res.render('pages/addUser', {
                 message: "email already used"
             });
