@@ -6,23 +6,23 @@ const bcrypt = require('bcrypt');
 const dotenv = require('dotenv');
 //const cookieparser = require('cookie-parser');
 
-const passport = require('passport');
-const initializepassport = require('./passport-config');
-const flash = require('express-flash');
-const session = require('express-session');
+//const passport = require('passport');
+//const initializepassport = require('./passport-config');
+//const flash = require('express-flash');
+//const session = require('express-session');
 
-if (process.env.NODE_ENV !== 'production'){
-    require('dotenv').config()
-}
+//if (process.env.NODE_ENV !== 'production'){
+//    require('dotenv').config()
+//}
 
-initializepassport(passport);
-app.use(flash());
-app.use(session({
-    secret: process.env.SESSION_SECRET,
-    resave: false,
-    saveUninitialized: false
-}))
-app.use(passport.session());
+//initializepassport(passport);
+//app.use(flash());
+//app.use(session({
+//    secret: process.env.SESSION_SECRET,
+//    resave: false,
+//    saveUninitialized: false
+//}))
+//app.use(passport.session());
 
 const path = require('path');
 const port = 3000;

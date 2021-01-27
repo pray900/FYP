@@ -1,4 +1,4 @@
-const auth = require('./controllers/login');
+//const auth = require('./controllers/login');
 
 const localStrategy = require('passport-local').Strategy
 
