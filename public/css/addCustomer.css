@@ -3,6 +3,7 @@
 }
 form{
     margin-top: 10vh;
+    display: flex;
 }
 input{
     margin-left: 2vw;
@@ -12,6 +13,6 @@ input{
     margin-left: 5vw;
 }
 #submitbtn{
-    margin-top: 3vh;
+    margin-top: 26vh;
     padding: 1vh 1.5vw;
 }
