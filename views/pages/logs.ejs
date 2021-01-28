@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/logs.css">
+    <link rel="stylesheet" href="/css/navbar.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <title>Logs</title>
+</head>
+<body>
+    <%- include('../partials/header')%>  
+    <div class="container">
+		<div class="nav_bar">
+			<span class="icon" id="icon">
+				<i class="fas fa-bars" id="menu"></i>
+				<i class="fas fa-bars close" id="cancel"></i>
+            </span>
+            <span>
+                <p style="color:white;margin-left: 5vw;">WELCOME,USER (Owner)  Logs</p>
+            </span>
+            <button style="margin-left: 58vw;" onclick="window.location='/logout'">logout</button>
+		</div>
+		<div class="contents">
+			<div class="menu_items slide" id="left">
+				<div class="lists"><span>Home</span></div>
+				<div class="lists"><span>Inventory</span></div>
+				<div class="lists"><span>Sales</span></div>
+				<div class="lists"><span>Customers</span></div>
+				<div class="lists"><span>Logs</span></div>
+				<div class="lists"><span>Register</span></div>
+			</div>
+			<div class="main_body">
+                <div class="container1">
+                    <div class="searchbox">
+                        <div class="searchpart">
+                            <div class="txtnbtn">
+                                <input type="text">
+                                <button>Search</button>
+                            </div>
+                            <div class="checkboxpart">
+                                <input type="checkbox" name="byID" id="byID">
+                                <p>By ID</p>
+                                <input type="checkbox" name="bylogin" id="bylogin">
+                                <p>By LoginID</p>
+                                <input type="checkbox" name="byDate" id="byDate">
+                                <p>By Date</p>
+                                <input type="checkbox" name="byTime" id="byTime">
+                                <p>By Time</p>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="sortpart">
+                            <input type="checkbox" name="byID2" id="byID2">
+                                <p>By ID</p>
+                                <input type="checkbox" name="bylogin2" id="bylogin2">
+                                <p>By LoginID</p>
+                                <input type="checkbox" name="byDate2" id="byDate2">
+                                <p>By Date</p>
+                                <input type="checkbox" name="byTime2" id="byTime2">
+                                <p>By Time</p>
+                            <button>Sort</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="container2">
+                    <p>Logs list</p>
+                </div>
+			</div>
+		</div>
+    </div>
+</body>
+<script>
+    document.querySelector("#icon").addEventListener("click",action);
+
+function action(){
+	document.querySelector("#menu").classList.toggle('close');
+	document.querySelector("#cancel").classList.toggle('close');
+	document.querySelector("#left").classList.toggle('slide');
+	document.querySelector("#left").classList.toggle('none');
+}
+</script>
+</html>

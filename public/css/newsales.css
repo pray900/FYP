@@ -1,0 +1,43 @@
+.main_body{
+    padding: 2vh 5vw;
+    display: flex;
+}
+form{
+    margin-top: 10vh;
+    display: flex;
+}
+input{
+    margin-left: 2vw;
+    margin-bottom: 2vh;
+}
+.btnbox{
+    margin-left: 5vw;
+}
+#submitbtn{
+    margin-top: 2vh;
+    padding: 1vh 1.5vw;
+}
+#newcustomer, #srcinv{
+    margin-left: 2vw;
+    padding: 1vh 1.5vw;
+}
+#srcinv {
+    margin-top: 2vh;
+}
+.listbox{
+    display: flex;
+    margin-left: 5vw;
+    width: 100%;
+}
+p{
+    display: inline;
+}
+.invlist , .custlist{
+    border: 2px solid;
+    padding: 1vh 1vw;
+    width: 50%;
+    background-color: white;
+}
+.invlist{
+    margin-right: .5vw;
+}
