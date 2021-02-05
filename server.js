@@ -9,7 +9,7 @@ const dotenv = require('dotenv');
 //const passport = require('passport');
 //const initializepassport = require('./passport-config');
 //const flash = require('express-flash');
-//const session = require('express-session');
+const session = require('express-session');
 
 //if (process.env.NODE_ENV !== 'production'){
 //    require('dotenv').config()
@@ -18,9 +18,9 @@ const dotenv = require('dotenv');
 //initializepassport(passport);
 //app.use(flash());
 //app.use(session({
-//    secret: process.env.SESSION_SECRET,
-//    resave: false,
-//    saveUninitialized: false
+//   secret: 'secret',
+//   resave: false,
+//   saveUninitialized: false
 //}))
 //app.use(passport.session());
 

@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const mysql = require('mysql');
 const bcrypt = require('bcrypt');
-//const addUser = require('./addUser');
+const addUser = require('./addUser');
 const home = require('./home');
 const inventory = require('./inventory');
 const sale = require('./sale');
@@ -26,7 +26,7 @@ module.exports = () => {
     //    failureFlash: true
     //}));
 
-    //router.use("/addUser", addUser());
+    router.use("/addUser", addUser());
 
     router.use("/home", home());
 
