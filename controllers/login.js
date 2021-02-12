@@ -1,6 +1,18 @@
 const mysql = require('mysql');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
+const session = require('express-session');
+const role = require('./role');
+const addlog = require('./addlogs')
+
+const express = require('express');
+const app = express();
+
+app.use(session({
+    secret: 'secret',
+    resave: false,
+    saveUninitialized: false
+ }))
 
 const db = mysql.createConnection({
     host:"localhost",
@@ -39,6 +51,8 @@ exports.login = async (req,res) => {
                 //    httpOnly: true
                 //}
                 //res.cookie('jwt', token, cookieOption);
+                addlog.addlogs(results);
+                role.role = results[0].Role;
                 res.status(200).redirect("/home");
             }
 

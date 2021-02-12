@@ -9,14 +9,14 @@
 </head>
 <body>
     <%- include('../partials/header')%>  
-    <div class="container">
-        <div class="text">
+    <div class="row container">
+        <div class=" col-lg-4 col-md-4 col-sm-12 text">
             <p>WELCOME</p><br>
             <p>TO</p><br>
             <p>LOGIN</p><br>
             <p>PAGE</p>
         </div>
-        <div class="form">
+        <div class="col-lg-4 col-md-4 col-sm-12 form">
             <form action="/login" method="POST">
                 <label for="username">Username:</label><br>
                 <input type="text" id="username" name="username"><br>
@@ -25,7 +25,7 @@
                 <input id="loginbtn" type="submit" value="Login">
             </form>       
         </div>
-        <div class="forgotpwd">
+        <div class="col-lg-4 col-md-4 col-sm-12 forgotpwd">
             <p>For owners only:</p>
             <button onclick="window.location='/addUser'">Add user</button>
         </div>
