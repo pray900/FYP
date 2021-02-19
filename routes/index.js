@@ -11,7 +11,9 @@ const logs = require('./logs');
 const register = require('./register');
 const auth = require('../controllers/login');
 const passport = require('passport');
+const codevalidate = require('../controllers/codevalidate');
 
+const values1 = require("../values");
 
 module.exports = () => {
     router.get("/", (req,res)=>{
@@ -39,6 +41,8 @@ module.exports = () => {
     router.use("/logs", logs());
 
     router.use("/register", register());
+
+    router.post("/codevalid", codevalidate.validate);
 
     return router;
 };
