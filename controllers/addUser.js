@@ -18,51 +18,53 @@ exports.register = (req,res) =>{
     values.email = email;
     values.username = username;
     values.password = password;
+    values.repassword = repassword;
     values.type = type;
-    values.rand = rand;
 
-    //emailvalid(email);
+    emailvalid(email);
+
+    values.rand = rand;
 
     return res.render('pages/codevalidate');
 
 }
 
-exports.register1 = (req,res) => {
-    console.log(req.body);
-
-    const { name, email, username, password, repassword, type} = req.body;
-
-    //emailvalid(email);
-
-    db.query('select email, username from login where email = ? or username = ?', [email, username], async (error, result) => {
-        if(error){
-            console.log("error is"+error);
-        }
-        if(result.length > 0){
-            console.log('email or username already used');
-            return res.render('pages/addUser', {
-                message: "email already used"
-            });
-        } else if( password !== repassword) {
-            console.log("pwd mismatch");
-            return res.render('pages/addUser', {
-                message: "password incorrect"
-            });
-        }
-        let hashedpwd = await bcrypt.hash(password, 8);
-        console.log(hashedpwd);
-
-        db.query('insert into login set ? ', {name: name, email: email, password: hashedpwd, username: username, role: type})
-    }, (error, result) => {
-        if (error) {
-            console.log(error);
-        } else {
-            return res.render('pages/loginpage', {
-                message: "success"
-            });
-        }
-    });
-} 
+//exports.register1 = (req,res) => {
+//    console.log(req.body);
+//
+//    const { name, email, username, password, repassword, type} = req.body;
+//
+//    //emailvalid(email);
+//
+//    db.query('select email, username from login where email = ? or username = ?', [email, username], async (error, result) => {
+//        if(error){
+//            console.log("error is"+error);
+//        }
+//        if(result.length > 0){
+//            console.log('email or username already used');
+//            return res.render('pages/addUser', {
+//                message: "email already used"
+//            });
+//        } else if( password !== repassword) {
+//            console.log("pwd mismatch");
+//            return res.render('pages/addUser', {
+//                message: "password incorrect"
+//            });
+//        }
+//        let hashedpwd = await bcrypt.hash(password, 8);
+//        console.log(hashedpwd);
+//
+//        db.query('insert into login set ? ', {name: name, email: email, password: hashedpwd, username: username, role: type})
+//    }, (error, result) => {
+//        if (error) {
+//            console.log(error);
+//        } else {
+//            return res.render('pages/loginpage', {
+//                message: "success"
+//            });
+//        }
+//    });
+//} 
 
 var transporter = nodemailer.createTransport({
     service: 'gmail',
@@ -72,9 +74,11 @@ var transporter = nodemailer.createTransport({
     }
   });
 
-var rand = getRndInteger(11111, 99999);
+var rand = "";
 
 function emailvalid(email){
+    rand = getRndInteger(11111, 99999);
+    console.log(rand + " code is");
     var mailOptions = {
         from: 'fypshrestha@gmail.com',
         to: email,
