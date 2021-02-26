@@ -1,0 +1,21 @@
+.liner{
+	width: 5%;	
+}
+.liner2{
+	width: 95%;
+	margin-top: .75rem;
+}
+.border1{
+	background-color: #dce9fd;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.liner3{
+	display: flex;
+	align-items: center;
+}
+.liner3 button{
+	margin-top: 2rem; 
+}
+.lengther{
+	width: 15rem;
+}

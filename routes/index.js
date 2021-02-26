@@ -11,13 +11,17 @@ const logs = require('./logs');
 const register = require('./register');
 const auth = require('../controllers/login');
 const passport = require('passport');
+const changepwd = require('./changepwd');
+const forgotpassword = require('./forgotpassword');
 const codevalidate = require('../controllers/codevalidate');
 
 const values1 = require("../values");
 
 module.exports = () => {
     router.get("/", (req,res)=>{
-        res.render('pages/loginpage');
+        res.render('pages/login',{
+            message: ""
+        });
     });
 
     router.post("/login", auth.login);
@@ -30,19 +34,27 @@ module.exports = () => {
 
     router.use("/addUser", addUser());
 
+    router.use("/forgotpassword", forgotpassword());
+
     router.use("/home", home());
 
-    router.use("/inventorysearch", inventory());
+    router.use("/inventory", inventory());
 
-    router.use("/salesearch", sale());
+    router.use("/sales", sale());
 
-    router.use("/customersearch", customer());
+    router.use("/customer", customer());
 
     router.use("/logs", logs());
 
     router.use("/register", register());
 
+    router.use("/changepwd", changepwd());
+
     router.post("/codevalid", codevalidate.validate);
+
+    router.get("/logout", (req,res)=>{
+        res.render('pages/login');
+    });
 
     return router;
 };

@@ -1,70 +1,83 @@
-const mysql = require('mysql');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const nodemailer = require('nodemailer');
-const values = require("../values");
+const database = require("../database");
+const values = require('../values');
 
-const db = mysql.createConnection({
-    host:"localhost",
-    user: "root",
-    password: "",
-    database:"fyp"
-});
+// exports.register = (req,res) =>{
+//     console.log(req.body);
+//     //const { name, email, username, password, repassword, type} = req.body;
+//     const { name, email, username, type} = req.body;
+//     values.name = name;
+//     values.email = email;
+//     values.username = username;
+//     //values.password = password;
+//     //values.repassword = repassword;
+//     values.type = type;
 
-exports.register = (req,res) =>{
+//     emailvalid(email);
+
+//     values.rand = rand;
+//     values.password = rand;
+
+//     return res.render('pages/codevalidate');
+
+// }
+
+exports.register = (req,res) => {
     console.log(req.body);
-    const { name, email, username, password, repassword, type} = req.body;
-    values.name = name;
-    values.email = email;
-    values.username = username;
-    values.password = password;
-    values.repassword = repassword;
-    values.type = type;
 
+    //const { name, email, username, password, repassword, type} = req.body;
+    const { name, email, username, type} = req.body;
+    
+    if ( !name || !email || !username || !type) {
+        console.log('enter all data')
+            return res.render('pages/addRegister', {
+            message: "please provide username and password"
+        })
+    }
     emailvalid(email);
 
-    values.rand = rand;
+    database.query('select email, username from login where email = ? or username = ?', [email, username], async (error, result) => {
+        if(error){
+            console.log("error is"+error);
+        }
+        if(result.length > 0){
+            console.log('email or username already used');
+            return res.render('pages/addRegister', {
+                message: "email already used"
+            });
+        } 
+        // else if( password !== repassword) {
+        //     console.log("pwd mismatch");
+        //     return res.render('pages/addUser', {
+        //         message: "password incorrect"
+        //     });
+        // }
+        let hashedpwd = await bcrypt.hash(rand, 8);
+        console.log(rand+"  rand value");
+        console.log(hashedpwd);
 
-    return res.render('pages/codevalidate');
-
-}
-
-//exports.register1 = (req,res) => {
-//    console.log(req.body);
-//
-//    const { name, email, username, password, repassword, type} = req.body;
-//
-//    //emailvalid(email);
-//
-//    db.query('select email, username from login where email = ? or username = ?', [email, username], async (error, result) => {
-//        if(error){
-//            console.log("error is"+error);
-//        }
-//        if(result.length > 0){
-//            console.log('email or username already used');
-//            return res.render('pages/addUser', {
-//                message: "email already used"
-//            });
-//        } else if( password !== repassword) {
-//            console.log("pwd mismatch");
-//            return res.render('pages/addUser', {
-//                message: "password incorrect"
-//            });
-//        }
-//        let hashedpwd = await bcrypt.hash(password, 8);
-//        console.log(hashedpwd);
-//
-//        db.query('insert into login set ? ', {name: name, email: email, password: hashedpwd, username: username, role: type})
-//    }, (error, result) => {
-//        if (error) {
-//            console.log(error);
-//        } else {
-//            return res.render('pages/loginpage', {
-//                message: "success"
-//            });
-//        }
-//    });
-//} 
+    //     database.query('insert into login set ? ', {name: name, email: email, password: hashedpwd, username: username, role: type})
+    // }, (error, result) => {
+    //     if (error) {
+    //         console.log(error);
+    //     } else {
+    //         return res.render('pages/addUser', {
+    //             message: "success"
+    //         });
+    //     }
+    database.query('insert into login set ? ', {name: name, email: email, password: hashedpwd, username: username, role: type}, async (error, result) => {
+    if (error) {
+        console.log(error);
+    } else {
+        return res.render('pages/addRegister', {
+            message: "success"
+        });
+    }
+    });
+});
+} 
 
 var transporter = nodemailer.createTransport({
     service: 'gmail',
@@ -77,13 +90,13 @@ var transporter = nodemailer.createTransport({
 var rand = "";
 
 function emailvalid(email){
-    rand = getRndInteger(11111, 99999);
+    rand = getRand(8);
     console.log(rand + " code is");
     var mailOptions = {
         from: 'fypshrestha@gmail.com',
         to: email,
         subject: 'Sending Email for code',
-        text: 'the code is '+ rand
+        text: 'Your password is '+ rand
       };
 
     transporter.sendMail(mailOptions, function(error, info){
@@ -95,10 +108,12 @@ function emailvalid(email){
     });
 }
 
-function getRndInteger(min, max) {
-    return Math.floor(Math.random() * (max - min) ) + min;
-}
-
-function checker(){
-
+function getRand(length) {
+  var result           = '';
+  var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+  var charactersLength = characters.length;
+  for ( var i = 0; i < length; i++ ) {
+     result += characters.charAt(Math.floor(Math.random() * charactersLength));
+  }
+  return result;
 }

@@ -1,0 +1,18 @@
+.main_body{
+    padding: 2vh 18vw;
+}
+form{
+    margin-top: 10vh;
+    display: flex;
+}
+input{
+    margin-left: 2vw;
+    margin-bottom: 2vh;
+}
+.btnbox{
+    margin-left: 5vw;
+}
+#submitbtn{
+    margin-top: 26vh;
+    padding: 1vh 1.5vw;
+}

@@ -7,10 +7,10 @@ module.exports = () => {
         res.render('pages/register');
     });
     router.get("/addUser", (req,res)=>{
-        res.render('pages/addUser');
+        res.render('pages/addRegister');
     });
     router.get("/editUser", (req,res)=>{
-        res.render('pages/editUser');
+        res.render('pages/editRegister');
     });
     router.post("/registerUser", registerUser.register);
     return router;

@@ -1,0 +1,34 @@
+.main_body{
+    padding: 2vh 1vw;
+}
+p{
+    display: initial;
+}
+.searchbox{
+    background-color: greenyellow;
+    padding: 2vh 1.5vw;
+}
+button{
+    padding: 0.5vh 1vw;
+    margin: 0 1vw;
+}
+input{
+    margin-left: 1vw;
+}
+.checkboxpart{
+    margin-top: 2vh;
+}
+.container1{
+    display: flex;
+}
+.buttonbox{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.container2{
+    margin-top: 5vh;
+    background-color: antiquewhite;
+    height: 40vh;
+    width: 99%;
+}

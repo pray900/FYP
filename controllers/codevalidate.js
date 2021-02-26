@@ -1,14 +1,6 @@
-const values = require('../values');
-const mysql = require('mysql');
 const bcrypt = require('bcrypt');
-
-const db = mysql.createConnection({
-    host:"localhost",
-    user: "root",
-    password: "",
-    database:"fyp"
-});
-
+const database = require("../database");
+const values = require('../values');
 
 exports.validate = (req,res) =>{
     console.log(req.body);
@@ -26,7 +18,7 @@ exports.validate = (req,res) =>{
         var username = values.username;
 
 
-        db.query('select email, username from login where email = ? or username = ?', [email, username], async (error, result) => {
+        database.query('select email, username from login where email = ? or username = ?', [email, username], async (error, result) => {
             if(error){
                 console.log("error is"+error);
             }
@@ -44,7 +36,7 @@ exports.validate = (req,res) =>{
             let hashedpwd = await bcrypt.hash(password, 8);
             console.log(hashedpwd);
     
-            db.query('insert into login set ? ', {name: name, email: email, password: hashedpwd, username: username, role: type})
+            database.query('insert into login set ? ', {name: name, email: email, password: hashedpwd, username: username, role: type})
         }, (error, result) => {
             if (error) {
                 console.log(error);

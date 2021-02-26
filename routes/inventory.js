@@ -4,7 +4,7 @@ const AddInventory = require('../controllers/addInventory');
 
 module.exports = () => {
     router.get("/", (req,res)=>{
-        res.render('pages/inventorySearch');
+        res.render('pages/inventory');
     });
     router.get("/addInv", (req,res)=>{
         res.render('pages/addInv');

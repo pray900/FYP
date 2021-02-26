@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/addInv.css">
+    <link rel="stylesheet" href="/css/navbar.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <title>Add Inventory</title>
+</head>
+<body>
+    <%- include('../partials/header')%>  
+    <div class="container">
+		<div class="nav_bar">
+			<span class="icon" id="icon">
+				<i class="fas fa-bars" id="menu"></i>
+				<i class="fas fa-bars close" id="cancel"></i>
+            </span>
+            <span>
+                <p style="color:white;margin-left: 5vw;">WELCOME,USER (Owner)  Add Quantity</p>
+            </span>
+            <button style="margin-left: 58vw;" onclick="window.location='/logout'">logout</button>
+		</div>
+		<div class="contents">
+			<div class="menu_items slide" id="left">
+				<div class="lists" onclick="window.location='/home'"><span>Home</span></div>
+				<div class="lists" onclick="window.location='/inventorysearch'"><span>Inventory</span></div>
+				<div class="lists" onclick="window.location='/salesearch'"><span>Sales</span></div>
+				<div class="lists" onclick="window.location='/customersearch'"><span>Customers</span></div>
+				<div class="lists" onclick="window.location='/logs'"><span>Logs</span></div>
+				<div class="lists" onclick="window.location='/register'"><span>Register</span></div>
+			</div>
+			<div class="main_body">
+                <form action="">
+                    <div class="txtbox">
+                        <label for="invid">ID: </label><br>
+                        <input type="text" id="invid" name="invid"><br>
+                        <label for="Name">Name: </label><br>
+                        <input type="text" id="name" name="name"><br>
+                        <label for="Invtype">Inv Type : </label><br>
+                        <input type="text" id="Invtype" name="Invtype"><br>
+                        <label for="Supplier">Supplier: </label><br>
+                        <input type="text" id="Supplier" name="Supplier"><br>
+                        <label for="costprice">Cost Price: </label><br>
+                        <input type="text" id="costprice" name="costprice"><br>
+                        <label for="qty">Quantity: </label><br>
+                        <input type="text" id="qty" name="qty"><br>
+                    </div>
+                    <div class="btnbox">
+                        <label for="salesprice">Sales Price: </label><br>
+                        <input type="text" id="salesprice" name="salesprice"><br>
+                        <input type="submit" id="submitbtn" value ="Add Quantity">
+                    </div>
+                </form>
+			</div>
+		</div>
+    </div>
+</body>
+<script>
+    document.querySelector("#icon").addEventListener("click",action);
+
+function action(){
+	document.querySelector("#menu").classList.toggle('close');
+	document.querySelector("#cancel").classList.toggle('close');
+	document.querySelector("#left").classList.toggle('slide');
+	document.querySelector("#left").classList.toggle('none');
+}
+</script>
+</html>

@@ -3,10 +3,10 @@ const router = express.Router();
 
 module.exports = () => {
     router.get("/", (req,res)=>{
-        res.render('pages/saleSearch');
+        res.render('pages/sales');
     });
     router.get("/newSale", (req,res)=>{
-        res.render('pages/newsales');
+        res.render('pages/newSales');
     });
     return router;
 };

@@ -1,63 +1,172 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/css/addCustomer.css">
-    <link rel="stylesheet" href="/css/navbar.css">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
-    <title>Document</title>
-</head>
-<body>
-    <%- include('../partials/header')%>  
-    <div class="container">
-		<div class="nav_bar">
-			<span class="icon" id="icon">
-				<i class="fas fa-bars" id="menu"></i>
-				<i class="fas fa-bars close" id="cancel"></i>
-            </span>
-            <span>
-                <p style="color:white;margin-left: 5vw;">WELCOME,USER (Owner)  Add Customers</p>
-            </span>
-            <button style="margin-left: 58vw;" onclick="window.location='/logout'">logout</button>
-		</div>
-		<div class="contents">
-			<div class="menu_items slide" id="left">
-				<div class="lists" onclick="window.location='/home'"><span>Home</span></div>
-				<div class="lists" onclick="window.location='/inventorysearch'"><span>Inventory</span></div>
-				<div class="lists" onclick="window.location='/salesearch'"><span>Sales</span></div>
-				<div class="lists" onclick="window.location='/customersearch'"><span>Customers</span></div>
-				<div class="lists" onclick="window.location='/logs'"><span>Logs</span></div>
-				<div class="lists" onclick="window.location='/register'"><span>Register</span></div>
-			</div>
-			<div class="main_body">
-                <form action="/customersearch/addCust" method="POST">
-                    <div class="txtbox">
-                        <label for="Name">Name: </label><br>
-                        <input type="text" id="name" name="name"><br>
-                        <label for="Email">Email : </label><br>
-                        <input type="text" id="email" name="email"><br>
-                        <label for="Number">Number: </label><br>
-                        <input type="text" id="number" name="number"><br>
-                        <label for="Address">Address: </label><br>
-                        <input type="text" id="address" name="address"><br>
-                    </div>
-                    <div class="btnbox">
-                        <input type="submit" id="submitbtn" value ="Add Customer">
-                    </div>
-                </form>
-			</div>
-		</div>
-    </div>
-</body>
-<script>
-    document.querySelector("#icon").addEventListener("click",action);
 
-function action(){
-	document.querySelector("#menu").classList.toggle('close');
-	document.querySelector("#cancel").classList.toggle('close');
-	document.querySelector("#left").classList.toggle('slide');
-	document.querySelector("#left").classList.toggle('none');
-}
-</script>
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>AddCustomer</title>
+
+    <!-- Custom fonts for this template-->
+    <link href="/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+
+    <!-- Custom styles for this template-->
+    <link href="/css/overall.css" rel="stylesheet">
+    <link href="/css/extra.css" rel="stylesheet">
+
+</head>
+
+<body id="page-top">
+    <div class="shadow p-3 mb-1 headertitle">
+        <div class="logo"></div>
+        <div class="businessname">
+            <h3 class="mb-0 text-white">MOKSH Enterprises</h3>
+        </div>
+    </div>
+    <!-- Page Wrapper -->
+    <div id="wrapper">
+        
+
+        <!-- Sidebar -->
+        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+
+            <!-- Sidebar - Brand -->
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" >
+                <div class="sidebar-brand-icon rotate-n-15">
+                    <i class="fas fa-laugh-wink"></i>
+                </div>
+                <div class="sidebar-brand-text mx-3">Customer</div>
+            </a>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider my-0">
+
+            <!-- Nav Item - Dashboard -->
+            <li class="nav-item">
+                <a class="nav-link" href="/home">
+                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                    <span>Home</span></a>
+            </li>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider my-0">
+
+            <!-- Nav Item - Charts -->
+            <li class="nav-item">
+                <a class="nav-link" href="/inventory">
+                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                    <span>Inventory</span></a>
+            </li>
+
+            <hr class="sidebar-divider my-0">
+
+            <!-- Nav Item - Charts -->
+            <li class="nav-item">
+                <a class="nav-link" href="/sales">
+                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                    <span>Sales</span></a>
+            </li>
+
+            <hr class="sidebar-divider my-0">
+
+            <!-- Nav Item - Charts -->
+            <li class="nav-item active">
+                <a class="nav-link" href="/customer">
+                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                    <span>Customer</span></a>
+            </li>
+
+            <hr class="sidebar-divider my-0">
+
+            <!-- Nav Item - Tables -->
+            <li class="nav-item">
+                <a class="nav-link" href="/logs">
+                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                    <span>Logs</span></a>
+            </li>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider my-0">
+
+            <li class="nav-item">
+                <a class="nav-link" href="/register">
+                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                    <span>Register</span></a>
+            </li>
+
+            <hr class="sidebar-divider d-none d-md-block">
+
+        </ul>
+        <!-- End of Sidebar -->
+
+        <!-- Content Wrapper -->
+        <div id="content-wrapper" class="d-flex flex-column">
+
+            <!-- Main Content -->
+            <div id="content">
+
+                <!-- Topbar -->
+                <nav class="navbar justify-content-between navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+                    <div class="container-fluid" >
+                        <p>Hello, User</p>
+                    </div>
+                    <div class="container-fluid d-inline" >
+                        <p class="text-right">Add Customer</p>
+                    </div>
+                </nav>
+                <!-- End of Topbar -->
+
+                <!-- Begin Page Content -->
+                <div class="container-fluid">
+                    <!-- Content Row -->
+                    <form action="">
+                    <div class="row">                       
+                            <div class="col-xl-5 col-md-6 mb-1">
+                                <label for="inputAddress" class="mt-2">Name</label>
+                                <input type="text" class="form-control lengther" id="inputAddress">
+                                <label for="inputAddress" class="mt-2">Email</label>
+                                <input type="text" class="form-control lengther" id="inputAddress">
+                                <label for="inputAddress" class="mt-2">Number</label>
+                                <input type="text" class="form-control lengther" id="inputAddress">
+                                <label for="inputAddress" class="mt-2">Address</label>
+                                <input type="text" class="form-control lengther" id="inputAddress">
+                            </div>
+                            <div class="col-xl-5 col-md-6 mb-1">
+                                <button type="submit" class="btn btn-primary mt-4">Add Customer</button>
+                            </div>                        
+                    </div>
+                    </form>
+                </div>           
+                <!-- /.container-fluid -->
+            </div>
+            <!-- End of Main Content -->
+
+            <!-- Footer -->
+            <footer class="sticky-footer bg-white">
+                <div class="container my-auto">
+                    <div class="copyright text-center my-auto">
+                        <span>MOKSH Enterprises</span>
+                    </div>
+                </div>
+            </footer>
+            <!-- End of Footer -->
+
+        </div>
+        <!-- End of Content Wrapper -->
+
+    </div>
+    <!-- End of Page Wrapper -->
+
+    <!-- Scroll to Top Button-->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+</body>
+
 </html>

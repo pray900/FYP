@@ -7,7 +7,7 @@ const registerUser = require('../controllers/addUser');
 
 module.exports = () => {
     router.get("/", (req,res)=>{
-        res.render('pages/addUser');
+        res.render('pages/addRegister');
     });
     router.post("/registerUser", registerUser.register);
     return router;

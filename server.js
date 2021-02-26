@@ -40,15 +40,10 @@ app.use(express.urlencoded({ extended: false}));
 app.use(express.json());
 
 //app.use(cookieparser());
-//const values = require("./values");
 
-const db = mysql.createConnection({
-    host:"localhost",
-    user: "root",
-    password: "",
-    database:"fyp"
-});
-db.connect((err)=>{
+const database = require("./database");
+
+database.connect((err)=>{
     if(err){
         console.log("error is", err);
         throw err;

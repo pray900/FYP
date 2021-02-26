@@ -1,0 +1,24 @@
+body{
+    background-color: rgb(252, 230, 203);
+    height: 100vh;
+    font-family: Arial;
+}
+.container{
+    background-color: rgb(236, 236, 88);
+    text-align: center;
+    height: 30vh;
+    width: 54vw;
+    margin: 16vh 0 0 20vw;
+}
+.container p {
+    font-weight: bold;
+    padding-top: 6vh;
+}
+form{
+    margin-top: 1vw;
+}
+#btn{
+    margin-top: 4vh;
+    height: 4.5vh;
+    width: 7vw;
+}

@@ -1,18 +1,11 @@
-const mysql = require('mysql');
-
-const db = mysql.createConnection({
-    host:"localhost",
-    user: "root",
-    password: "",
-    database:"fyp"
-});
+const database = require("../database");
 
 exports.addInv = (req,res) => {
     console.log(req.body);
 
     const { name, Invtype, Supplier, costprice, qty, salesprice} = req.body;
 
-    db.query('insert into Inventory set ? ', {Name: name, Invtype: Invtype, Supplier: Supplier, Costprice: costprice, Quantity: qty, Salesprice: salesprice})
+    database.query('insert into Inventory set ? ', {Name: name, Invtype: Invtype, Supplier: Supplier, Costprice: costprice, Quantity: qty, Salesprice: salesprice})
     , (error, result) => {
         if (error) {
             console.log(error);

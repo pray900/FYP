@@ -4,7 +4,7 @@ const AddCustomer = require('../controllers/addCustomer');
 
 module.exports = () => {
     router.get("/", (req,res)=>{
-        res.render('pages/customerSearch');
+        res.render('pages/customer');
     });
     router.get("/addCust", (req,res)=>{
         res.render('pages/addCustomer');

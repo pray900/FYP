@@ -1,4 +1,4 @@
-const mysql = require('mysql');
+const database = require("../database");
 
 'use strict';
 
@@ -19,20 +19,13 @@ for (const name of Object.keys(nets)) {
     }
 }
 
-const db = mysql.createConnection({
-    host:"localhost",
-    user: "root",
-    password: "",
-    database:"fyp"
-});
-
 var datetime = new Date();
 
 exports.addlogs = (res) => {
     console.log(res[0].id + "  consloge log test");
     console.log();
 
-    db.query('insert into Logs set ? ', {User_id: res[0].id, Date: datetime, Ip_address: results["Wi-Fi"][0]})
+    database.query('insert into Logs set ? ', {User_id: res[0].id, Date: datetime, Ip_address: results["Wi-Fi"][0]})
     , (error, result) => {
         if (error) {
             console.log(error);
