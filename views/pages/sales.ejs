@@ -113,7 +113,7 @@
                 <!-- Topbar -->
                 <nav class="navbar justify-content-between navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
                     <div class="container-fluid" >
-                        <p>Hello, User</p>
+                        <p>Hello, <%= name %></p>
                     </div>
                     <div class="container-fluid d-inline" >
                         <p class="text-right">Sales Search</p>
@@ -147,13 +147,17 @@
                                             By Name
                                         </label>                
                                     </div>
-                                    <div class="col-xl-2 col-md-2 mb-1">
-                                        
+                                    <div class="col-xl-2 col-md-2 mb-1">                                       
                                         <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" > 
                                         <label class="form-check-label" for="exampleRadios1">
                                             By Qty
-                                        </label>
-                                    
+                                        </label>                                    
+                                    </div>
+                                    <div class="col-xl-2 col-md-2 mb-1">
+                                        <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" > 
+                                        <label class="form-check-label" for="exampleRadios1">
+                                            By user id
+                                        </label>  
                                     </div>
                                     <div class="col-xl-2 col-md-2 mb-1">                                   
                                         <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" > 
@@ -190,18 +194,28 @@
                                         <label class="form-check-label" for="exampleRadios1">
                                             By Price
                                         </label>  
-                                    </div>                                  
+                                    </div>                               
                                 </div>
                                 <div class="row">
+                                    <div class="col-xl-12 col-md-12 mb-12 d-flex">
+                                        <div class="liner2">
+                                            <hr class="sidebar-divider my-0">
+                                        </div>                                       
+                                    </div>
+                                </div>
+                                <div class="row" style="margin-top: .75rem;">
                                         <div class="col-xl-2 col-md-2 mb-12 ">
                                             <button type="submit" class="btn btn-primary mb-2">Search</button>
                                         </div>
                                         <div class="col-xl-2 col-md-2 mb-12">
                                             <button type="submit" class="btn btn-primary mb-2">Delete</button>
                                         </div>
+                                        <div class="col-xl-2 col-md-2 mb-12">
+                                            <button type="submit" class="btn btn-primary mb-2">Sort</button>
+                                        </div>
                                 </div>
                             </form>
-                            <div class="row">
+                            <!-- <div class="row">
                                 <div class="col-xl-12 col-md-12 mb-12 d-flex">
                                     <div class="liner">
                                         <h5>OR</h5>
@@ -274,7 +288,7 @@
                                         <button type="submit" class="btn btn-primary mb-2">Sort</button>
                                     </div>
                                 </div>
-                            </form>
+                            </form> -->
                         </div>
 
                         <!-- Earnings (Monthly) Card Example -->

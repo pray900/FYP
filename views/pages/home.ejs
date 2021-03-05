@@ -17,6 +17,7 @@
 
     <!-- Custom styles for this template-->
     <link href="/css/overall.css" rel="stylesheet">
+    <link href="/css/home.css" rel="stylesheet">
 
 </head>
 
@@ -112,7 +113,7 @@
                 <!-- Topbar -->
                 <nav class="navbar justify-content-between navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
                     <div class="container-fluid" >
-                        <p>Hello, User</p>
+                        <p>Hello, <%= name %></p>
                     </div>
                     <a href="/logout" class=" d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
                                 class="fas fa-download fa-sm text-white-50"></i> Logout</a>
@@ -123,15 +124,39 @@
                 <div class="container-fluid">
 
                     <div class="row">
-                        <div class="col-xl-4 col-md-6 mb-4 dropdown show">
+                        <!-- <div class="col-xl-4 col-md-6 mb-4 dropdown show">
                             <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Shop
                             </a>
+                            
                             <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                <a class="dropdown-item" href="#">Shop 1</a>
-                                <a class="dropdown-item" href="#">Shop 2</a>
+                                <a class="dropdown-item" href="/shop1">Shop 1</a>
+                                <a class="dropdown-item" href="/shop2">Shop 2</a>
                             </div>
+                        </div> -->
+                        <div class="col-xl-6 col-md-6">
+                            <%
+                            var i ="";
+                            if(!selectedshop){
+                                i = defshop;
+                            } else {
+                                i = selectedshop;
+                            } %> 
+                            <label for="sel1">Current shop is : <%= i %> </label>
                         </div>
+                        <form action="/submittedshop" method="POST">
+                            <div class="form-group col-xl-6 col-md-6 oneliner">
+                                <label for="sel1" class="spacer">Shop:</label>
+                                <select class="form-control ml-2" id="sel1" name="shop">
+                                    <%
+                                    shoplist1.forEach(function(data){
+                                    %>
+                                  <option value="<%=data.Name %>" name="shop"><%=data.Name %></option>
+                                  <% }) %>
+                                </select>
+                                <button type="submit" class="btn btn-primary ml-2">Sort</button>                                
+                            </div>
+                        </form>
                     </div>
 
                     <!-- Page Heading -->

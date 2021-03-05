@@ -113,7 +113,7 @@
                 <!-- Topbar -->
                 <nav class="navbar justify-content-between navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
                     <div class="container-fluid" >
-                        <p>Hello, User</p>
+                        <p>Hello, <%= name %></p>
                     </div>
                     <div class="container-fluid d-inline" >
                         <p class="text-right">Add Customer</p>
@@ -124,17 +124,18 @@
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
                     <!-- Content Row -->
-                    <form action="">
+                    <form action="/customer/addCust" method="POST">
                     <div class="row">                       
                             <div class="col-xl-5 col-md-6 mb-1">
+                                <p style="color: red; font-size: large; margin: 0;"><%= msg %></p>
                                 <label for="inputAddress" class="mt-2">Name</label>
-                                <input type="text" class="form-control lengther" id="inputAddress">
+                                <input type="text" class="form-control lengther" id="inputAddress" name="name">
                                 <label for="inputAddress" class="mt-2">Email</label>
-                                <input type="text" class="form-control lengther" id="inputAddress">
+                                <input type="text" class="form-control lengther" id="inputAddress" name="email">
                                 <label for="inputAddress" class="mt-2">Number</label>
-                                <input type="text" class="form-control lengther" id="inputAddress">
+                                <input type="text" class="form-control lengther" id="inputAddress" name="number">
                                 <label for="inputAddress" class="mt-2">Address</label>
-                                <input type="text" class="form-control lengther" id="inputAddress">
+                                <input type="text" class="form-control lengther" id="inputAddress" name="address">
                             </div>
                             <div class="col-xl-5 col-md-6 mb-1">
                                 <button type="submit" class="btn btn-primary mt-4">Add Customer</button>

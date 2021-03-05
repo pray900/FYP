@@ -1,19 +1,7 @@
-.main_body{
-    padding: 2vh 4vw;
+.oneliner{
+    display: flex;
+    max-width: 100% !important;
 }
-.container2, .container3{
-    display: flex; 
-}
-.t_sales, .t_profit, .t_logs, .t_customer, .t_inventory{
-    background-color: antiquewhite;
-    padding: 1vh 3vw;
-    margin: 0 2.5vw;
-}
-.container1 , .container2 , .container3 {
-    margin-bottom: 5vh;
-}
-.container4{
-    background-color: antiquewhite;
-    height: 40vh;
-    width: 99%;
+.spacer{
+    margin-top: 6px;
 }

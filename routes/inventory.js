@@ -1,17 +1,60 @@
 const express = require('express');
 const router = express.Router();
 const AddInventory = require('../controllers/addInventory');
+const InventorySearch = require('../controllers/inventorysearch');
+const InventoryEdit = require('../controllers/inventoryedit');
+const shopselector = require('../controllers/shopselector');
+const values = require('../values');
+const database = require('../database');
 
 module.exports = () => {
     router.get("/", (req,res)=>{
-        res.render('pages/inventory');
+
+        
+        shopselector.currentshop(function(response){
+            mainquery(response)
+        });
+
+
+        function mainquery(reshopid){
+            database.query('select * from inventory where shop_id = ?',[reshopid], function (error, result) {
+                if (error) {
+                    console.log(error);
+                } else {
+                    console.log(result[0]+ " default inv sort and search");
+                    res.render('pages/inventory',{name: values.loginusername, datas: result, msg:""});
+                }
+            });
+        }
+
+        // database.query('select * from inventory where shop_id = ?',[], function (error, result) {
+        //     if (error) {
+        //         console.log(error);
+        //     } else {
+        //         console.log(result[0]+ " default inv sort and search");
+        //         res.render('pages/inventory',{name: values.loginusername, datas: result});
+        //     }
+        // });
+        //res.render('pages/inventory',{name: values.loginusername});
+
     });
+
     router.get("/addInv", (req,res)=>{
-        res.render('pages/addInv');
+        res.render('pages/addInv',{name: values.loginusername});
     });
-    router.get("/addQty", (req,res)=>{
-        res.render('pages/addQty');
-    });
+
+    router.post("/search", InventorySearch.invsrc);
+
+    router.post("/editInv", InventoryEdit.invedit);
+
+
+    // router.get("/addQty", (req,res)=>{
+    //     res.render('pages/addInv',{name: values.loginusername});
+    //     res.render('pages/addInvQuantity',{name: values.loginusername});
+    // });
+
+
+
     router.post("/addInv", AddInventory.addInv);
     return router;
 };

@@ -34,11 +34,14 @@ exports.login = async (req,res) => {
             if ( !results[0] || !(await bcrypt.compare(password, results[0].password)) ){
                 console.log(results+"error username and password");
                 res.render('pages/login', {
-                    message: 'username or password wrong'
+                    message: 'wrong username or password'
                 })
             } else {
                 var userid = results[0].id;
                 values.loginusername = results[0].username;
+                values.loginuserid = results[0].id;
+                console.log("active user is "+ values.loginusername + values.loginuserid);
+                //username1 = results[0].username;
                 database.query('select * from logs where User_id = ?', [userid], async (error,results) => {
                     console.log("hello  " + results)
                     if( !results[0] ){
@@ -49,6 +52,7 @@ exports.login = async (req,res) => {
                         addlog.addlogs(results1);
                         role.role = results[0].Role;
                         res.status(200).redirect("/home");
+                        //res.status(200).render('pages/home',{message: username1});
                     }
                 })
 

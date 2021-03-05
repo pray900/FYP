@@ -13,6 +13,7 @@ const auth = require('../controllers/login');
 const passport = require('passport');
 const changepwd = require('./changepwd');
 const forgotpassword = require('./forgotpassword');
+const selectshop = require('../controllers/shopselector');
 const codevalidate = require('../controllers/codevalidate');
 
 const values1 = require("../values");
@@ -25,6 +26,8 @@ module.exports = () => {
     });
 
     router.post("/login", auth.login);
+
+    router.post("/submittedshop", selectshop.submitchoice);
 
     //router.post("/login", passport.Authenticator('local', {
     //    successRedirect: '/home',
@@ -53,7 +56,7 @@ module.exports = () => {
     router.post("/codevalid", codevalidate.validate);
 
     router.get("/logout", (req,res)=>{
-        res.render('pages/login');
+        res.render('pages/login',{message: ""});
     });
 
     return router;

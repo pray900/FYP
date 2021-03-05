@@ -113,7 +113,7 @@
                 <!-- Topbar -->
                 <nav class="navbar justify-content-between navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
                     <div class="container-fluid" >
-                        <p>Hello, User</p>
+                        <p>Hello, <%= name %></p>
                     </div>
                     <div class="container-fluid d-inline" >
                         <p class="text-right">Inventory Search</p>
@@ -130,72 +130,85 @@
                         <!-- Earnings (Monthly) Card Example -->
                         <div class="col-xl-10 col-md-12 mb-12 py-2 px-4 border1">
 
-                            <form action="">
+                            <p style="color: red; font-size: large; margin: 0;"><%= msg %></p>
+                            <form action="/inventory/search" method="POST">
                                 <div class="row">
                                     <div class="col-xl-4 col-md-4 mb-12 mr-5">
-                                        <input class="form-control form-control-sm" type="text" placeholder="search">
+                                        <input class="form-control form-control-sm" type="text" placeholder="search" name="searchbox">
                                     </div>
                                     <div class="col-xl-2 col-md-2 mb-1">
-                                        <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" > 
+                                        <input class="form-check-input" type="radio" name="search" id="exampleRadios1" value="inv_id" required> 
                                         <label class="form-check-label" for="exampleRadios1">
                                             By ID
                                         </label>
                                     </div>
                                     <div class="col-xl-2 col-md-2 mb-1">
-                                        <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" > 
+                                        <input class="form-check-input" type="radio" name="search" id="exampleRadios1" value="name" > 
                                         <label class="form-check-label" for="exampleRadios1">
                                             By Name
                                         </label>                
                                     </div>
                                     <div class="col-xl-2 col-md-2 mb-1">
                                         
-                                        <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" > 
+                                        <input class="form-check-input" type="radio" name="search" id="exampleRadios1" value="quantity" > 
                                         <label class="form-check-label" for="exampleRadios1">
                                             By Qty
                                         </label>
                                     
                                     </div>
                                     <div class="col-xl-2 col-md-2 mb-1">                                   
-                                        <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" > 
+                                        <input class="form-check-input" type="radio" name="search" id="exampleRadios1" value="supplier" > 
                                         <label class="form-check-label" for="exampleRadios1">
                                             By Supplier
                                         </label>                                
                                     </div>
                                     <div class="col-xl-2 col-md-2 mb-1">
-                                        <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" > 
+                                        <input class="form-check-input" type="radio" name="search" id="exampleRadios1" value="cost_price" > 
                                         <label class="form-check-label" for="exampleRadios1">
                                             By Cost Price
                                         </label>                                       
                                     </div>
                                     <div class="col-xl-2 col-md-2 mb-1">
-                                        <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" > 
+                                        <input class="form-check-input" type="radio" name="search" id="exampleRadios1" value="sales_price" > 
                                         <label class="form-check-label" for="exampleRadios1">
                                             By Sales Price
                                         </label>                                 
                                     </div>
                                     <div class="col-xl-2 col-md-2 mb-1">
-                                        <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" > 
+                                        <input class="form-check-input" type="radio" name="search" id="exampleRadios1" value="inv_type" > 
                                         <label class="form-check-label" for="exampleRadios1">
                                             By Type
                                         </label>  
                                     </div>                                    
                                 </div>
+
                                 <div class="row">
+                                    <div class="col-xl-12 col-md-12 mb-12 d-flex">
+                                        <div class="liner2">
+                                            <hr class="sidebar-divider my-0">
+                                        </div>                                      
+                                    </div>
+                                </div>
+
+                                <div class="row" style="margin-top: .75rem;">
                                         <div class="col-xl-2 col-md-2 mb-12 ">
-                                            <button type="submit" class="btn btn-primary mb-2">Search</button>
+                                            <button type="submit" class="btn btn-primary mb-2" name="subbtn" value="searchbtn">Search</button>
                                         </div>
                                         <div class="col-xl-2 col-md-2 mb-12">
-                                            <button type="submit" class="btn btn-primary mb-2">Add Qty</button>
+                                            <button type="submit" class="btn btn-primary mb-2" name="subbtn" value="addqtybtn">Add Qty</button>
                                         </div>
                                         <div class="col-xl-2 col-md-2 mb-12">
-                                            <button type="submit" class="btn btn-primary mb-2">Delete</button>
+                                            <button type="submit" class="btn btn-primary mb-2" name="subbtn" value="deletebtn">Delete</button>
                                         </div>
                                         <div class="col-xl-2 col-md-2 mb-12">
-                                            <button type="submit" class="btn btn-primary mb-2">History</button>
+                                            <button type="submit" class="btn btn-primary mb-2" name="subbtn" value="historybtn">History</button>
+                                        </div>
+                                        <div class="col-xl-2 col-md-2 mb-12">
+                                            <button type="submit" class="btn btn-primary mb-2" name="subbtn" value="sortbtn">Sort</button>
                                         </div>
                                 </div>
                             </form>
-                            <div class="row">
+                            <!-- <div class="row">
                                 <div class="col-xl-12 col-md-12 mb-12 d-flex">
                                     <div class="liner">
                                         <h5>OR</h5>
@@ -205,8 +218,8 @@
                                     </div>
                                     
                                 </div>
-                            </div>
-                            <form action="">                                                               
+                            </div> -->
+                            <!-- <form action="">                                                               
                                 <div class="row">
                                     <div class="col-xl-2 col-md-2 mb-1">
                                         <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" > 
@@ -256,7 +269,7 @@
                                         <button type="submit" class="btn btn-primary mb-2">Sort</button>
                                     </div>
                                 </div>
-                            </form>
+                            </form> -->
                         </div>
 
                         <!-- Earnings (Monthly) Card Example -->
@@ -269,8 +282,43 @@
                             <div class="card-header py-2">
                                 <h6 class="m-0 font-weight-bold text-primary">Search and Sorted </h6>
                             </div>
-                            <div class="card-body ">
-                                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Beatae quod facere voluptatibus, debitis sunt libero tempore saepe nam pariatur, quia eveniet quisquam magnam repellat. Et ea, officiis deserunt debitis possimus?</p>
+                            <div class="card-body overflow-auto p-0" style="max-height: 20rem;">
+                                <table class="table table-striped">
+                                    <thead class="thead-dark">
+                                      <tr>
+                                        <th scope="col">inv id</th>
+                                        <th scope="col">Name</th>
+                                        <th scope="col">inv type</th>
+                                        <th scope="col">qty</th>
+                                        <th scope="col">shop id</th>
+                                        <th scope="col">cost price</th>
+                                        <th scope="col">supplier</th>
+                                        <th scope="col">sales price</th>
+                                      </tr>
+                                    </thead>
+                                    <tbody>
+                                        <%
+                                        if(datas.length!=0){
+                                        datas.forEach(function(data){
+                                        %>
+                                      <tr>
+                                        <th scope="row"><%=data.inv_id %></th>
+                                        <td><%=data.name %></td>
+                                        <td><%=data.inv_type %></td>
+                                        <td><%=data.quantity %></td>
+                                        <td><%=data.shop_id %></td>
+                                        <td><%=data.cost_price %></td>
+                                        <td><%=data.supplier %></td>
+                                        <td><%=data.sales_price %></td>
+                                      </tr>
+                                        <% }) %>
+                                        <% } else{ %>
+                                            <tr>
+                                                <td colspan="8">No Data Found</td>
+                                            </tr>
+                                        <% } %>
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
                     </div>
