@@ -48,7 +48,7 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item">
-                <a class="nav-link" href="index.html">
+                <a class="nav-link" href="/home">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Home</span></a>
             </li>
@@ -58,7 +58,7 @@
 
             <!-- Nav Item - Charts -->
             <li class="nav-item">
-                <a class="nav-link" href="charts.html">
+                <a class="nav-link" href="/inventory">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Inventory</span></a>
             </li>
@@ -67,7 +67,7 @@
 
             <!-- Nav Item - Charts -->
             <li class="nav-item">
-                <a class="nav-link" href="charts.html">
+                <a class="nav-link" href="/sales">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Sales</span></a>
             </li>
@@ -76,7 +76,7 @@
 
             <!-- Nav Item - Charts -->
             <li class="nav-item">
-                <a class="nav-link" href="charts.html">
+                <a class="nav-link" href="/customer">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Customer</span></a>
             </li>
@@ -85,7 +85,7 @@
 
             <!-- Nav Item - Tables -->
             <li class="nav-item">
-                <a class="nav-link" href="tables.html">
+                <a class="nav-link" href="/logs">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Logs</span></a>
             </li>
@@ -94,7 +94,7 @@
             <hr class="sidebar-divider my-0">
 
             <li class="nav-item active">
-                <a class="nav-link" href="tables.html">
+                <a class="nav-link" href="/register">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Register</span></a>
             </li>
@@ -124,37 +124,85 @@
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
                     <!-- Content Row -->
-                    <form action="">
-                    <div class="row">                       
+                    <form action="/register/edit" method="POST">
+                        <div class="row">                       
                             <div class="col-xl-5 col-md-6 mb-1 ml-5">
+                                <p style="color: red; font-size: large; margin: 0;"><%=msg %></p>
+                                <label for="inputAddress" class="mt-2">Id</label>
+                                <input type="text" class="form-control lengther" id="inputAddress" name="mainid" value="<%=datas.id %>" readonly>
                                 <label for="inputAddress" class="mt-2">Name</label>
-                                <input type="text" class="form-control lengther" id="inputAddress">
+                                <input type="text" class="form-control lengther" id="inputAddress" name="name" value="<%=datas.Name %>">
                                 <label for="inputAddress" class="mt-2">Email</label>
-                                <input type="text" class="form-control lengther" id="inputAddress">
+                                <input type="text" class="form-control lengther" id="inputAddress" name="email" value="<%=datas.Email %>">
                                 <label for="inputAddress" class="mt-2">Username</label>
-                                <input type="text" class="form-control lengther" id="inputAddress">
-                                <label for="inputAddress" class="mt-2">Password</label>
-                                <input type="text" class="form-control lengther" id="inputAddress">
-                                <label for="inputAddress" class="mt-2">Retype-Password</label>
-                                <input type="text" class="form-control lengther" id="inputAddress">
-                                <input class="form-check-input mt-2" type="checkbox" value="" id="defaultCheck1">
-                                <label class="form-check-label d-flex" for="defaultCheck1">
-                                Inventory
+                                <input type="text" class="form-control lengther" id="inputAddress" name="username" value="<%=datas.username %>">
+                                <label for="inputAddress" class="mt-2">Roles</label>      
+                                <%
+                                var i = "checked";
+                                if(datas.Role=="Inventory"){
+                                %>
+                                <div class="form-check">
+                                <input class="form-check-input" type="radio" name="type" id="flexRadioDefault1" value="Inventory" <%=i %> >
+                                <label class="form-check-label" for="inventory">
+                                  Inventory
                                 </label>
-                                <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-                                <label class="form-check-label d-flex" for="defaultCheck1">
-                                Sales
+                                </div>
+                                <div class="form-check">
+                                <input class="form-check-input" type="radio" name="type" id="flexRadioDefault2" value="Sales">
+                                <label class="form-check-label" for="sales">
+                                  Sales
                                 </label>
-                                <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-                                <label class="form-check-label d-flex" for="defaultCheck1">
-                                Owner
+                                </div>
+                                <div class="form-check">
+                                <input class="form-check-input" type="radio" name="type" id="flexRadioDefault2" value="Owner" >
+                                <label class="form-check-label" for="sales">
+                                  Owner
                                 </label>
-
-                            </div>
+                                </div>
+                              <% } else if(datas.Role=="Sales"){ %>
+                                <div class="form-check">
+                                <input class="form-check-input" type="radio" name="type" id="flexRadioDefault2" value="Inventory" >
+                                <label class="form-check-label" for="sales">
+                                  Inventory
+                                </label>
+                                </div>
+                                <div class="form-check">
+                                <input class="form-check-input" type="radio" name="type" id="flexRadioDefault2" value="Sales" <%=i %> >
+                                <label class="form-check-label" for="sales">
+                                  Sales
+                                </label>
+                                </div>
+                                <div class="form-check">
+                                <input class="form-check-input" type="radio" name="type" id="flexRadioDefault2" value="Owner" >
+                                <label class="form-check-label" for="sales">
+                                  Owner
+                                </label>
+                                </div>
+                              <% } else if(datas.Role=="Owner"){ %>
+                                <div class="form-check">
+                                <input class="form-check-input" type="radio" name="type" id="flexRadioDefault2" value="Inventory" >
+                                <label class="form-check-label" for="sales">
+                                  Inventory
+                                </label>
+                                </div>
+                                <div class="form-check">
+                                <input class="form-check-input" type="radio" name="type" id="flexRadioDefault2" value="Sales" >
+                                <label class="form-check-label" for="sales">
+                                  Sales
+                                </label>
+                                </div>
+                                <div class="form-check">
+                                <input class="form-check-input" type="radio" name="type" id="flexRadioDefault3" value="Owner" <%=i %> >
+                                <label class="form-check-label" for="owner">
+                                  Owner
+                                </label>
+                                </div>
+                              <% }%>
+                            </div>    
                             <div class="col-xl-5 col-md-6 mb-1">
                                 <button type="submit" class="btn btn-primary mt-4">Edit User</button>
                             </div>                        
-                    </div>
+                        </div>
                     </form>
                 </div>           
                 <!-- /.container-fluid -->

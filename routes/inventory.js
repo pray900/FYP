@@ -4,6 +4,7 @@ const AddInventory = require('../controllers/addInventory');
 const InventorySearch = require('../controllers/inventorysearch');
 const InventoryEdit = require('../controllers/inventoryedit');
 const shopselector = require('../controllers/shopselector');
+const invedtdel = require('../controllers/inventoryedtdel');
 const values = require('../values');
 const database = require('../database');
 
@@ -40,7 +41,7 @@ module.exports = () => {
     });
 
     router.get("/addInv", (req,res)=>{
-        res.render('pages/addInv',{name: values.loginusername});
+        res.render('pages/addInv',{name: values.loginusername,msg:""});
     });
 
     router.post("/search", InventorySearch.invsrc);
@@ -52,9 +53,9 @@ module.exports = () => {
     //     res.render('pages/addInv',{name: values.loginusername});
     //     res.render('pages/addInvQuantity',{name: values.loginusername});
     // });
+    router.get("/addqtybtn/:id", invedtdel.invedit);
+    router.get("/deletebtn/:id", invedtdel.invdel);
 
 
-
-    router.post("/addInv", AddInventory.addInv);
     return router;
 };

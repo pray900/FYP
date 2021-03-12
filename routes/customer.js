@@ -4,6 +4,7 @@ const AddCustomer = require('../controllers/addCustomer');
 const EditCustomer = require('../controllers/editCustomer');
 const shopselector = require('../controllers/shopselector');
 const CustomerSearch = require('../controllers/customersearch');
+const custedtdel = require('../controllers/customeredtdel');
 const database = require('../database');
 const values = require('../values');
 
@@ -41,6 +42,9 @@ module.exports = () => {
     router.post("/addCust", AddCustomer.addCustomer);
 
     router.post("/editcust", EditCustomer.editCustomer);
+
+    router.get("/editbtn/:id", custedtdel.custedit);
+    router.get("/deletebtn/:id", custedtdel.custdel);
 
     return router;
 };

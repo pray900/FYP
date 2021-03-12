@@ -33,7 +33,7 @@ exports.register = (req,res) => {
     if ( !name || !email || !username || !type) {
         console.log('enter all data')
             return res.render('pages/addRegister', {
-            message: "please provide username and password"
+            msg: "please provide username and password", name: values.loginusername
         })
     }
     emailvalid(email);
@@ -45,7 +45,7 @@ exports.register = (req,res) => {
         if(result.length > 0){
             console.log('email or username already used');
             return res.render('pages/addRegister', {
-                message: "email already used"
+                msg: "email already used",name: values.loginusername
             });
         } 
         // else if( password !== repassword) {
@@ -72,7 +72,7 @@ exports.register = (req,res) => {
         console.log(error);
     } else {
         return res.render('pages/addRegister', {
-            message: "success"
+            msg: "success", name: values.loginusername
         });
     }
     });

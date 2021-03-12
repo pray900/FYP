@@ -19,7 +19,7 @@ exports.invsrc = (req,res) => {
         });
 
         function mainquery(reshopid){
-            database.query('select * from inventory where shop_id = ? and '+search+' = ?',[reshopid, searchbox], function (error, result) {
+            database.query('select * from inventory where shop_id = ? and '+search+' like ?',[reshopid, '%'+searchbox+'%'], function (error, result) {
                 if (error) {
                     console.log(error+" in searchbtn");
                     errordisp("error in search");
@@ -33,57 +33,57 @@ exports.invsrc = (req,res) => {
         }
 
     }
-    else if(subbtn == "addqtybtn"){
+    // else if(subbtn == "addqtybtn"){
 
-        if(!search || !searchbox){
-            errordisp("search box is empty");
-        }
+    //     if(!search || !searchbox){
+    //         errordisp("search box is empty");
+    //     }
 
-        shopselector.currentshop(function(response){
-            mainquery(response)
-        });
+    //     shopselector.currentshop(function(response){
+    //         mainquery(response)
+    //     });
 
-        function mainquery(reshopid){
-            database.query('select * from inventory where shop_id = ? and '+search+' = ?',[reshopid, searchbox], function (error, result) {
-                if (error) {
-                    console.log(error+" in addqtybtn");
-                    errordisp("error in addqty");
-                } else if(!result[0]){
-                    errordisp("Inv does not exist to add Inv");
-                }else{
-                    console.log(result+ " addqtybtn inv sort and search");
-                    res.render('pages/addInvQuantity',{name: values.loginusername, datas: result[0], msg: ""});
-                }
-            });
-        }
+    //     function mainquery(reshopid){
+    //         database.query('select * from inventory where shop_id = ? and '+search+' = ?',[reshopid, searchbox], function (error, result) {
+    //             if (error) {
+    //                 console.log(error+" in addqtybtn");
+    //                 errordisp("error in addqty");
+    //             } else if(!result[0]){
+    //                 errordisp("Inv does not exist to add Inv");
+    //             }else{
+    //                 console.log(result+ " addqtybtn inv sort and search");
+    //                 res.render('pages/addInvQuantity',{name: values.loginusername, datas: result[0], msg: ""});
+    //             }
+    //         });
+    //     }
 
-    }
-    else if(subbtn == "deletebtn"){
+    // }
+    // else if(subbtn == "deletebtn"){
 
-        if(!search || !searchbox){
-            errordisp("search box is empty");
-        }
+    //     if(!search || !searchbox){
+    //         errordisp("search box is empty");
+    //     }
 
-        shopselector.currentshop(function(response){
-            mainquery(response)
-        });
+    //     shopselector.currentshop(function(response){
+    //         mainquery(response)
+    //     });
 
-        function mainquery(reshopid){
-            database.query('delete from inventory where shop_id = ? and '+search+' = ?',[reshopid, searchbox], function (error, result) {
-                console.log(result.affectedRows+" res in deletebtn");
-                if (error) {
-                    console.log(error+" in deletebtn");
-                    errordisp("error in delete");
-                } else if(result.affectedRows == 0){                   
-                    errordisp("Inv does not exist to delete");
-                }else{
-                    console.log(result+ " deletebtn inv sort and search");
-                    errordisp("row deleted successfully");
-                }
-            });
-        }
+    //     function mainquery(reshopid){
+    //         database.query('delete from inventory where shop_id = ? and '+search+' = ?',[reshopid, searchbox], function (error, result) {
+    //             console.log(result.affectedRows+" res in deletebtn");
+    //             if (error) {
+    //                 console.log(error+" in deletebtn");
+    //                 errordisp("error in delete");
+    //             } else if(result.affectedRows == 0){                   
+    //                 errordisp("Inv does not exist to delete");
+    //             }else{
+    //                 console.log(result+ " deletebtn inv sort and search");
+    //                 errordisp("row deleted successfully");
+    //             }
+    //         });
+    //     }
 
-    }
+    // }
     else if(subbtn == "historybtn"){
         if(!search || !searchbox){
             errordisp("search box is empty");

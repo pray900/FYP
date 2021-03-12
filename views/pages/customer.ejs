@@ -185,12 +185,12 @@
                                         <div class="col-xl-2 col-md-2 mb-12 ">
                                             <button type="submit" class="btn btn-primary mb-2" name="subbtn" value="searchbtn">Search</button>
                                         </div>
-                                        <div class="col-xl-2 col-md-2 mb-12">
+                                        <!-- <div class="col-xl-2 col-md-2 mb-12">
                                             <button type="submit" class="btn btn-primary mb-2" name="subbtn" value="deletebtn">Delete</button>
                                         </div>
                                         <div class="col-xl-2 col-md-2 mb-12">
                                             <button type="submit" class="btn btn-primary mb-2" name="subbtn" value="editbtn">Edit</button>
-                                        </div>
+                                        </div> -->
                                         <div class="col-xl-2 col-md-2 mb-12">
                                             <button type="submit" class="btn btn-primary mb-2" name="subbtn" value="sortbtn">Sort</button>
                                         </div>
@@ -268,6 +268,7 @@
                                         <th scope="col">Address</th>
                                         <th scope="col">shop id</th>
                                         <th scope="col">user id</th>
+                                        <th scope="col">action</th>
                                       </tr>
                                     </thead>
                                     <tbody>
@@ -283,6 +284,10 @@
                                         <td><%=data.address %></td>
                                         <td><%=data.shop_id %></td>
                                         <td><%=data.user_id %></td>
+                                        <td>
+                                            <a href="/customer/editbtn/<%=data.customer_id %>" type="button" class="btn btn-primary mb-2">Edit</a>
+                                            <a href="/customer/deletebtn/<%=data.customer_id %>" type="button" class="btn btn-primary mb-2">Delete</a>
+                                        </td>
                                       </tr>
                                         <% }) %>
                                         <% } else{ %>

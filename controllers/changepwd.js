@@ -36,8 +36,15 @@ exports.newpwd = (req,res) => {
                     console.log(error);
                 } else {
                     console.log('password changed');
-                    return res.render('pages/home', {
-                        message: "success"
+                    database.query('select * from shop', function (error, result) {
+                        if (error) {
+                            console.log(error);
+                        } else {
+                            values.defaultshopid = result[0].Shop_id;
+                            values.defaultshopname = result[0].Name;
+                            console.log(values.defaultshopname + " "+ values.defaultshopid+ " default shop name and id");
+                            res.render('pages/home', {name: values.loginusername, shoplist1: result, defshop: result[0].Name, selectedshop: values.submittedshop});
+                        }
                     });
                 }
             })

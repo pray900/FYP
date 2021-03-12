@@ -49,9 +49,12 @@ exports.addInv = (req,res) => {
         , (error, result) => {
             if (error) {
                 console.log(error);
+                return res.render('pages/addInv', {
+                    msg: "error", name: values.loginusername
+                });
             } else {
                 return res.render('pages/addInv', {
-                    message: "success", name: values.loginusername
+                    msg: "success", name: values.loginusername
                 });
             }
         })

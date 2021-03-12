@@ -19,7 +19,7 @@ exports.custsrc = (req,res) => {
         });
 
         function mainquery(reshopid){
-            database.query('select * from customer where shop_id = ? and '+search+' = ?',[reshopid, searchbox], function (error, result) {
+            database.query('select * from customer where shop_id = ? and '+search+' like ?',[reshopid, '%'+searchbox+'%'], function (error, result) {
                 if (error) {
                     console.log(error+" in searchbtn");
                     errordisp("error in search");
@@ -34,55 +34,55 @@ exports.custsrc = (req,res) => {
 
     }
     
-    else if(subbtn == "deletebtn"){
+    // else if(subbtn == "deletebtn"){
 
-        if(!search || !searchbox){
-            errordisp("search box is empty");
-        }
+    //     if(!search || !searchbox){
+    //         errordisp("search box is empty");
+    //     }
 
-        shopselector.currentshop(function(response){
-            mainquery(response)
-        });
+    //     shopselector.currentshop(function(response){
+    //         mainquery(response)
+    //     });
 
-        function mainquery(reshopid){
-            database.query('delete from customer where shop_id = ? and '+search+' = ?',[reshopid, searchbox], function (error, result) {
-                console.log(result.affectedRows+" res in deletebtn");
-                if (error) {
-                    console.log(error+" in deletebtn");
-                    errordisp("error in delete");
-                } else if(result.affectedRows == 0){                   
-                    errordisp("customer does not exist to delete");
-                }else{
-                    console.log(result+ " deletebtn customer sort and search");
-                    errordisp("row deleted successfully");
-                }
-            });
-        }
+    //     function mainquery(reshopid){
+    //         database.query('delete from customer where shop_id = ? and '+search+' = ?',[reshopid, searchbox], function (error, result) {
+    //             console.log(result.affectedRows+" res in deletebtn");
+    //             if (error) {
+    //                 console.log(error+" in deletebtn");
+    //                 errordisp("error in delete");
+    //             } else if(result.affectedRows == 0){                   
+    //                 errordisp("customer does not exist to delete");
+    //             }else{
+    //                 console.log(result+ " deletebtn customer sort and search");
+    //                 errordisp("row deleted successfully");
+    //             }
+    //         });
+    //     }
 
-    }
-    else if(subbtn == "editbtn"){
-        if(!search || !searchbox){
-            errordisp("search box is empty");
-        }
-        shopselector.currentshop(function(response){
-            mainquery(response)
-        });
+    // }
+    // else if(subbtn == "editbtn"){
+    //     if(!search || !searchbox){
+    //         errordisp("search box is empty");
+    //     }
+    //     shopselector.currentshop(function(response){
+    //         mainquery(response)
+    //     });
 
-        function mainquery(reshopid){
-            database.query('select * from customer where shop_id = ? and '+search+' = ?',[reshopid, searchbox], function (error, result) {
-                if (error) {
-                    console.log(error+" in editbtn");
-                    errordisp("error in editbtn");
-                } else if(!result[0]){
-                    errordisp("customer does not exist");
-                }else{
-                    console.log(result+ " edit customer sort and search");
-                    res.render('pages/editCustomer',{name: values.loginusername, datas: result[0], msg: ""});
-                }
-            });
-        }
+    //     function mainquery(reshopid){
+    //         database.query('select * from customer where shop_id = ? and '+search+' = ?',[reshopid, searchbox], function (error, result) {
+    //             if (error) {
+    //                 console.log(error+" in editbtn");
+    //                 errordisp("error in editbtn");
+    //             } else if(!result[0]){
+    //                 errordisp("customer does not exist");
+    //             }else{
+    //                 console.log(result+ " edit customer sort and search");
+    //                 res.render('pages/editCustomer',{name: values.loginusername, datas: result[0], msg: ""});
+    //             }
+    //         });
+    //     }
 
-    }
+    // }
     else{
 
         shopselector.currentshop(function(response){

@@ -176,7 +176,7 @@
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                                                 Total Sales</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">$40,000</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800"><%= ts %></div>
                                         </div>
                                         <div class="col-auto">
                                             <i class="fas fa-calendar fa-2x text-gray-300"></i>
@@ -214,7 +214,7 @@
                                             </div>
                                             <div class="row no-gutters align-items-center">
                                                 <div class="col-auto">
-                                                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">50%</div>
+                                                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800"><%= tl %></div>
                                                 </div>
                                             </div>
                                         </div>
@@ -237,7 +237,7 @@
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                                                 Total Customers</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">$40,000</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800"><%= tc %></div>
                                         </div>
                                         <div class="col-auto">
                                             <i class="fas fa-calendar fa-2x text-gray-300"></i>
@@ -255,7 +255,7 @@
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
                                                 Total Inventory</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">$215,000</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800"><%= ti %></div>
                                         </div>
                                         <div class="col-auto">
                                             <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
@@ -270,8 +270,43 @@
                             <div class="card-header py-2">
                                 <h6 class="m-0 font-weight-bold text-primary">Low Inventories </h6>
                             </div>
-                            <div class="card-body ">
-                                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Beatae quod facere voluptatibus, debitis sunt libero tempore saepe nam pariatur, quia eveniet quisquam magnam repellat. Et ea, officiis deserunt debitis possimus?</p>
+                            <div class="card-body overflow-auto p-0" style="max-height: 20rem;">                       
+                                <table class="table table-striped">
+                                    <thead class="thead-dark">
+                                      <tr>
+                                        <th scope="col">inv id</th>
+                                        <th scope="col">Name</th>
+                                        <th scope="col">inv type</th>
+                                        <th scope="col">qty</th>
+                                        <th scope="col">shop id</th>
+                                        <th scope="col">cost price</th>
+                                        <th scope="col">supplier</th>
+                                        <th scope="col">sales price</th>
+                                      </tr>
+                                    </thead>
+                                    <tbody>
+                                        <%
+                                        if(datas.length!=0){
+                                        datas.forEach(function(data){
+                                        %>
+                                      <tr>
+                                        <th scope="row"><%=data.inv_id %></th>
+                                        <td><%=data.name %></td>
+                                        <td><%=data.inv_type %></td>
+                                        <td><%=data.quantity %></td>
+                                        <td><%=data.shop_id %></td>
+                                        <td><%=data.cost_price %></td>
+                                        <td><%=data.supplier %></td>
+                                        <td><%=data.sales_price %></td>
+                                      </tr>
+                                        <% }) %>
+                                        <% } else{ %>
+                                            <tr>
+                                                <td colspan="8">No Data Found</td>
+                                            </tr>
+                                        <% } %>
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
                     </div>

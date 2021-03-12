@@ -194,12 +194,12 @@
                                         <div class="col-xl-2 col-md-2 mb-12 ">
                                             <button type="submit" class="btn btn-primary mb-2" name="subbtn" value="searchbtn">Search</button>
                                         </div>
-                                        <div class="col-xl-2 col-md-2 mb-12">
+                                        <!-- <div class="col-xl-2 col-md-2 mb-12">
                                             <button type="submit" class="btn btn-primary mb-2" name="subbtn" value="addqtybtn">Add Qty</button>
                                         </div>
                                         <div class="col-xl-2 col-md-2 mb-12">
                                             <button type="submit" class="btn btn-primary mb-2" name="subbtn" value="deletebtn">Delete</button>
-                                        </div>
+                                        </div> -->
                                         <div class="col-xl-2 col-md-2 mb-12">
                                             <button type="submit" class="btn btn-primary mb-2" name="subbtn" value="historybtn">History</button>
                                         </div>
@@ -294,6 +294,7 @@
                                         <th scope="col">cost price</th>
                                         <th scope="col">supplier</th>
                                         <th scope="col">sales price</th>
+                                        <th scope="col">actions</th>
                                       </tr>
                                     </thead>
                                     <tbody>
@@ -301,20 +302,26 @@
                                         if(datas.length!=0){
                                         datas.forEach(function(data){
                                         %>
-                                      <tr>
+                                        <tr>
+
                                         <th scope="row"><%=data.inv_id %></th>
-                                        <td><%=data.name %></td>
+                                        <td ><%=data.name %></td>
                                         <td><%=data.inv_type %></td>
                                         <td><%=data.quantity %></td>
                                         <td><%=data.shop_id %></td>
                                         <td><%=data.cost_price %></td>
                                         <td><%=data.supplier %></td>
                                         <td><%=data.sales_price %></td>
-                                      </tr>
+                                        <td>
+                                            <a href="/inventory/addqtybtn/<%=data.inv_id %>" type="button" class="btn btn-primary mb-2">AddQty</a>
+                                            <a href="/inventory/deletebtn/<%=data.inv_id %>" type="button" class="btn btn-primary mb-2">Delete</a>
+                                        </td>
+
+                                        </tr>
                                         <% }) %>
                                         <% } else{ %>
                                             <tr>
-                                                <td colspan="8">No Data Found</td>
+                                                <td colspan="9">No Data Found</td>
                                             </tr>
                                         <% } %>
                                     </tbody>

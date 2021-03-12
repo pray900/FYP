@@ -20,7 +20,7 @@ exports.editCustomer = (req,res) => {
                 console.log(error);
                 return res.render('pages/editCustomer',{name: values.loginusername, datas: { customer_id: mainid, name: name, email: email, address: address, number: number}, msg:"error"});
             } else {
-                return res.render('pages/editCustomer',{name: values.loginusername, datas: { customer_id: mainid, name: name, email: email, address: address, number: number}, msg:"customer successfully added"});
+                return res.render('pages/editCustomer',{name: values.loginusername, datas: { customer_id: mainid, name: name, email: email, address: address, number: number}, msg:"customer successfully edited"});
             }
         })
 
