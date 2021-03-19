@@ -33,7 +33,7 @@ exports.forgotpassword = (req,res) => {
                 } else {
                     console.log('password changed');
                     return res.render('pages/changepwd', {
-                        message: "success"
+                        msg: ""
                     });
                 }
             })            

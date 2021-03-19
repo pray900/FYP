@@ -13,6 +13,7 @@ exports.invedit = (req,res) => {
             rres.render('pages/addInvQuantity',{name: values.loginusername, datas: { inv_id: mainid, name: name, inv_type: invtype, supplier: supplier, cost_price: costprice, quantity: quantity, sales_price: salesprice}, msg: "Error"});
         }else{
             console.log(result+ " Inventory Edited successfully");
+            
             res.render('pages/addInvQuantity',{name: values.loginusername, datas: { inv_id: mainid, name: name, inv_type: invtype, supplier: supplier, cost_price: costprice, quantity: quantity, sales_price: salesprice}, msg: "Inventory Edited successfully"});
         }
     });

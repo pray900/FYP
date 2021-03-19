@@ -54,7 +54,8 @@ exports.invdel = (req,res) => {
             if (error) {
                 console.log(error+" in deletebtn");
                 errordisp("error in delete");
-            } else if(result.affectedRows == 0){                   
+            } 
+            else if(result.affectedRows == 0){                   
                 errordisp("Inv does not exist to delete");
             }else{
                 console.log(result+ " deletebtn inv sort and search");
@@ -79,5 +80,11 @@ exports.invdel = (req,res) => {
             mainquery1(response)
         });
     }
+
+}
+
+exports.invhist = (req,res) => {
+
+    
 
 }

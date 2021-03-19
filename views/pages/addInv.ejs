@@ -124,24 +124,47 @@
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
                     <!-- Content Row -->
+                    <div class="row">
+                        <button class="btn btn-primary mb-3" onclick="window.location='/inventory'">Back</button>
+                    </div>
+                    <div class="row">
+                        <% if (msg) { %>
+                            <div class="alert alert-danger" role="alert">
+                                <%= msg %>
+                            </div>
+                        <% } %>                            
+                    </div>
                     <form action="/inventory/addInv" method="POST">
+                        
                         <div class="row">                       
                             <div class="col-xl-5 col-md-6 mb-1">
-                                <p style="color: red; font-size: large; margin: 0;"><%= msg %></p>
+                                <!-- <p style="color: red; font-size: large; margin: 0;"><%= msg %></p> -->
                                 <label for="inputAddress" class="mt-2">Name</label>
-                                <input type="text" class="form-control lengther" name="name">
+                                <input type="text" class="form-control lengther" name="name"<% if (vals.name) { %>
+                                    value = <%= vals.name %>
+                                <% } %>   >
                                 <label for="inputAddress" class="mt-2">Inv Type</label>
-                                <input type="text" class="form-control lengther" name="invtype">
+                                <input type="text" class="form-control lengther" name="invtype" <% if (vals.invtype) { %>
+                                    value = <%= vals.invtype %>
+                                <% } %>  >
                                 <label for="inputAddress" class="mt-2">Supplier</label>
-                                <input type="text" class="form-control lengther" name="supplier">
+                                <input type="text" class="form-control lengther" name="supplier" <% if (vals.supplier) { %>
+                                    value = <%= vals.supplier %>
+                                <% } %>  >
                                 <label for="inputAddress" class="mt-2">Cost Price</label>
-                                <input type="text" class="form-control lengther" name="costprice">
+                                <input type="text" class="form-control lengther" name="costprice" <% if (vals.costprice) { %>
+                                    value = <%= vals.costprice %>
+                                <% } %>  >
                             </div>
                             <div class="col-xl-5 col-md-6 mb-1">
                                 <label for="inputAddress " class="mt-2">Quantity</label>
-                                <input type="text" class="form-control lengther" name="quantity">
+                                <input type="text" class="form-control lengther" name="quantity" <% if (vals.quantity) { %>
+                                    value = <%= vals.quantity %>
+                                <% } %>  >
                                 <label for="inputAddress " class="mt-2">Sales Price</label>
-                                <input type="text" class="form-control lengther" name="salesprice">
+                                <input type="text" class="form-control lengther" name="salesprice" <% if (vals.salesprice) { %>
+                                    value = <%= vals.salesprice %>
+                                <% } %>  >
                                 <button type="submit" class="btn btn-primary mt-4">Add Inventory</button>
                             </div>                        
                         </div>

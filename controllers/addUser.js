@@ -29,14 +29,15 @@ exports.register = (req,res) => {
 
     //const { name, email, username, password, repassword, type} = req.body;
     const { name, email, username, type} = req.body;
+    usernm = username;
     
     if ( !name || !email || !username || !type) {
         console.log('enter all data')
             return res.render('pages/addRegister', {
-            msg: "please provide username and password", name: values.loginusername
+            msg: "Provide All Details", name: values.loginusername
         })
     }
-    emailvalid(email);
+    //emailvalid(email);
 
     database.query('select email, username from login where email = ? or username = ?', [email, username], async (error, result) => {
         if(error){
@@ -54,6 +55,8 @@ exports.register = (req,res) => {
         //         message: "password incorrect"
         //     });
         // }
+        emailvalid(email);
+
         let hashedpwd = await bcrypt.hash(rand, 8);
         console.log(rand+"  rand value");
         console.log(hashedpwd);
@@ -88,7 +91,7 @@ var transporter = nodemailer.createTransport({
   });
 
 var rand = "";
-
+var usernm = "";
 function emailvalid(email){
     rand = getRand(8);
     console.log(rand + " code is");
@@ -96,7 +99,7 @@ function emailvalid(email){
         from: 'fypshrestha@gmail.com',
         to: email,
         subject: 'Sending Email for code',
-        text: 'Your password is '+ rand
+        text: 'Your password is '+ rand +' and your username is '+usernm
       };
 
     transporter.sendMail(mailOptions, function(error, info){

@@ -41,12 +41,14 @@ module.exports = () => {
     });
 
     router.get("/addInv", (req,res)=>{
-        res.render('pages/addInv',{name: values.loginusername,msg:""});
+        res.render('pages/addInv',{name: values.loginusername,msg:"",vals: {name :"", invtype: "", supplier: "", costprice: "", quantity:"", salesprice:""}});
     });
 
     router.post("/search", InventorySearch.invsrc);
 
     router.post("/editInv", InventoryEdit.invedit);
+
+    router.post("/addInv", AddInventory.addInv);
 
 
     // router.get("/addQty", (req,res)=>{
@@ -55,6 +57,7 @@ module.exports = () => {
     // });
     router.get("/addqtybtn/:id", invedtdel.invedit);
     router.get("/deletebtn/:id", invedtdel.invdel);
+    router.get("/historybtn/:id", invedtdel.invhist);
 
 
     return router;

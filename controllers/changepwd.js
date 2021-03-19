@@ -18,7 +18,7 @@ exports.newpwd = (req,res) => {
     else if( NewPassword !== ConfirmPassword) {
             console.log("new and confirm pwd mismatch");
             return res.render('pages/changepwd', {
-                message: "password mismatch"
+                msg: "password mismatch"
             });
     }
     database.query('select * from login where username = ?', [values.loginusername], async (error, results) => {
@@ -26,7 +26,7 @@ exports.newpwd = (req,res) => {
         if ( !results[0] || !(await bcrypt.compare(CurrentPassword, results[0].password)) ){
             console.log(results+"  current password");
             res.render('pages/changepwd', {
-                message: 'current password wrong'
+                msg: 'current password wrong'
             })        
         }else{
             let hashedpwd = await bcrypt.hash(ConfirmPassword, 8);
@@ -43,7 +43,8 @@ exports.newpwd = (req,res) => {
                             values.defaultshopid = result[0].Shop_id;
                             values.defaultshopname = result[0].Name;
                             console.log(values.defaultshopname + " "+ values.defaultshopid+ " default shop name and id");
-                            res.render('pages/home', {name: values.loginusername, shoplist1: result, defshop: result[0].Name, selectedshop: values.submittedshop});
+                            //res.render('pages/home', {name: values.loginusername, shoplist1: result, defshop: result[0].Name, selectedshop: values.submittedshop});
+                            res.status(200).redirect("/home");
                         }
                     });
                 }

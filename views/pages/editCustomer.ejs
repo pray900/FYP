@@ -124,22 +124,33 @@
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
                     <!-- Content Row -->
+                    <div class="row">
+                        <button class="btn btn-primary mb-3" onclick="window.location='/customer'">Back</button>
+                    </div>
+                    <div class="row">
+                        <% if (msg) { %>
+                            <div class="alert alert-danger" role="alert">
+                                <%= msg %>
+                            </div>
+                        <% } %>                            
+                    </div>
                     <form action="/customer/editcust" method="POST">
                     <div class="row">                       
                             <div class="col-xl-5 col-md-6 mb-1">
-                                <p style="color: red; font-size: large; margin: 0;"><%=msg %></p>
+                                <!-- <p style="color: red; font-size: large; margin: 0;"><%=msg %></p> -->
                                 <label for="inputAddress" class="mt-2">Id</label>
                                 <input type="text" class="form-control lengther" id="inputAddress" name="mainid" value="<%=datas.customer_id %>" readonly>
                                 <label for="inputAddress" class="mt-2">Name</label>
                                 <input type="text" class="form-control lengther" id="inputAddress" name="name" value="<%=datas.name %>" >
                                 <label for="inputAddress" class="mt-2">Email</label>
                                 <input type="text" class="form-control lengther" id="inputAddress" name="email" value="<%=datas.email %>">
+                                
+                            </div>
+                            <div class="col-xl-5 col-md-6 mb-1">
                                 <label for="inputAddress" class="mt-2">Number</label>
                                 <input type="text" class="form-control lengther" id="inputAddress" name="number" value="<%=datas.number %>">
                                 <label for="inputAddress" class="mt-2">Address</label>
                                 <input type="text" class="form-control lengther" id="inputAddress" name="address" value="<%=datas.address %>">
-                            </div>
-                            <div class="col-xl-5 col-md-6 mb-1">
                                 <button type="submit" class="btn btn-primary mt-4">Edit Customer</button>
                             </div>                        
                     </div>

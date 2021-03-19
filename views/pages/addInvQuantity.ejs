@@ -124,11 +124,21 @@
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
                     <!-- Content Row -->
+                    <div class="row">
+                        <button class="btn btn-primary mb-3" onclick="window.location='/inventory'">Back</button>
+                    </div>
+                    <div class="row">
+                        <% if (msg) { %>
+                            <div class="alert alert-danger" role="alert">
+                                <%= msg %>
+                            </div>
+                        <% } %>                            
+                    </div>
                     <form action="/inventory/editInv" method="POST">
                         <div class="row">
                         
                             <div class="col-xl-5 col-md-6 mb-1">
-                                <p style="color: red; font-size: large; margin: 0;"><%=msg %></p>
+                                <!-- <p style="color: red; font-size: large; margin: 0;"><%=msg %></p> -->
                                 <label for="inputAddress " class="mt-2">ID</label>
                                 <input type="text" class="form-control lengther" id="inputAddress" name="mainid" value="<%=datas.inv_id %>" readonly>
                                 <label for="inputAddress" class="mt-2">Name</label>

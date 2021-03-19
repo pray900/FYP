@@ -124,16 +124,29 @@
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
                     <!-- Content Row -->
+                    <div class="row">
+                        <button class="btn btn-primary mb-3" onclick="window.location='/register'">Back</button>
+                    </div>
+                    <div class="row">
+                        <% if (msg) { %>
+                            <div class="alert alert-danger" role="alert">
+                                <%= msg %>
+                            </div>
+                        <% } %>                            
+                    </div>
                     <form action="/register/edit" method="POST">
                         <div class="row">                       
                             <div class="col-xl-5 col-md-6 mb-1 ml-5">
-                                <p style="color: red; font-size: large; margin: 0;"><%=msg %></p>
+                                <!-- <p style="color: red; font-size: large; margin: 0;"><%=msg %></p> -->
                                 <label for="inputAddress" class="mt-2">Id</label>
                                 <input type="text" class="form-control lengther" id="inputAddress" name="mainid" value="<%=datas.id %>" readonly>
                                 <label for="inputAddress" class="mt-2">Name</label>
                                 <input type="text" class="form-control lengther" id="inputAddress" name="name" value="<%=datas.Name %>">
                                 <label for="inputAddress" class="mt-2">Email</label>
                                 <input type="text" class="form-control lengther" id="inputAddress" name="email" value="<%=datas.Email %>">
+                                
+                            </div>    
+                            <div class="col-xl-5 col-md-6 mb-1">
                                 <label for="inputAddress" class="mt-2">Username</label>
                                 <input type="text" class="form-control lengther" id="inputAddress" name="username" value="<%=datas.username %>">
                                 <label for="inputAddress" class="mt-2">Roles</label>      
@@ -198,9 +211,7 @@
                                 </label>
                                 </div>
                               <% }%>
-                            </div>    
-                            <div class="col-xl-5 col-md-6 mb-1">
-                                <button type="submit" class="btn btn-primary mt-4">Edit User</button>
+                                <button type="submit" class="btn btn-primary mt-4">Save</button>
                             </div>                        
                         </div>
                     </form>

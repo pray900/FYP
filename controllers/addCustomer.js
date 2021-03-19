@@ -7,6 +7,10 @@ exports.addCustomer = (req,res) => {
 
     const { name, email, number, address} = req.body;
 
+    if(!name || !email || !number || !address){
+        return res.render('pages/addCustomer',{name: values.loginusername, msg:"Enter All Details"});
+    }
+
     shopselector.currentshop(function(response){
         console.log(response + "  current shop func res");
         mainquery(response)
@@ -17,8 +21,9 @@ exports.addCustomer = (req,res) => {
         database.query('insert into Customer set ? ', {Name: name, Email: email, Number: number, Address: address, shop_id: reshopid, user_id: values.loginuserid}, (error, result) => {
             if (error) {
                 console.log(error);
+                return res.render('pages/addCustomer',{name: values.loginusername, msg:"error"});
             } else {
-                return res.render('pages/addCustomer',{name: values.loginusername, msg:"customer successfully added"});
+                return res.render('pages/addCustomer',{name: values.loginusername, msg:"Customer Successfully Added"});
             }
         })
 
