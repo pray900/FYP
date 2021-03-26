@@ -26,7 +26,7 @@ exports.salesrc = (req,res) => {
                     errordisp("sale does not exist");
                 }else {
                     console.log(result+ " searchbtn sale sort and search");
-                    res.render('pages/sales',{name: values.loginusername, datas: result,msg:"searched"});
+                    res.render('pages/sales',{name: values.loginusername, datas: result,msg:"searched", role: values.role});
                 }
             });
         }
@@ -73,7 +73,7 @@ exports.salesrc = (req,res) => {
                     errordisp("No data to sort");
                 }else{
                     console.log(result+ " sortbtn sale sort and search");
-                    res.render('pages/sales',{name: values.loginusername, datas: result,msg:"sorted"});
+                    res.render('pages/sales',{name: values.loginusername, datas: result,msg:"sorted", role: values.role});
                 }
             });
         }
@@ -90,7 +90,7 @@ exports.salesrc = (req,res) => {
                     console.log(error);
                 } else {
                     console.log(result[0]+ " default sales sort and search");
-                    res.render('pages/sales',{name: values.loginusername, datas: result, msg:errmsg});
+                    res.render('pages/sales',{name: values.loginusername, datas: result, msg:errmsg, role: values.role});
                 }
             });
         }

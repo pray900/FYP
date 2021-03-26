@@ -27,7 +27,7 @@ exports.invsrc = (req,res) => {
                     errordisp("Inv does not exist");
                 }else {
                     console.log(result+ " searchbtn inv sort and search");
-                    res.render('pages/inventory',{name: values.loginusername, datas: result,msg:"searched"});
+                    res.render('pages/inventory',{name: values.loginusername, datas: result,msg:"searched", role: values.role});
                 }
             });
         }
@@ -107,7 +107,7 @@ exports.invsrc = (req,res) => {
                     errordisp("No data to sort");
                 }else{
                     console.log(result+ " sortbtn inv sort and search");
-                    res.render('pages/inventory',{name: values.loginusername, datas: result,msg:"sorted"});
+                    res.render('pages/inventory',{name: values.loginusername, datas: result,msg:"sorted", role: values.role});
                 }
             });
         }
@@ -123,7 +123,7 @@ exports.invsrc = (req,res) => {
                     console.log(error);
                 } else {
                     console.log(result[0]+ " default inv sort and search");
-                    res.render('pages/inventory',{name: values.loginusername, datas: result, msg:errmsg});
+                    res.render('pages/inventory',{name: values.loginusername, datas: result, msg:errmsg, role: values.role});
                 }
             });
         }

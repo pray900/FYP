@@ -19,7 +19,7 @@ exports.logsrc = (req,res) => {
                 errordisp("Logs does not exist");
             }else {
                 console.log(result+ " searchbtn logs sort and search");
-                res.render('pages/logs',{name: values.loginusername, datas: result,msg:"searched"});
+                res.render('pages/logs',{name: values.loginusername, datas: result,msg:"searched", role: values.role});
             }
         });
     }
@@ -34,7 +34,7 @@ exports.logsrc = (req,res) => {
                 errordisp("No data to sort");
             }else{
                 console.log(result+ " sortbtn logs sort and search");
-                res.render('pages/logs',{name: values.loginusername, datas: result,msg:"sorted"});
+                res.render('pages/logs',{name: values.loginusername, datas: result,msg:"sorted", role: values.role});
             }
         });
 
@@ -46,7 +46,7 @@ exports.logsrc = (req,res) => {
                 console.log(error);
             } else {
                 console.log(result[0]+ " default cust sort and search");
-                res.render('pages/logs',{name: values.loginusername, datas: result, msg:errmsg});
+                res.render('pages/logs',{name: values.loginusername, datas: result, msg:errmsg, role: values.role});
             }
         });
     }

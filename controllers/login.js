@@ -40,6 +40,8 @@ exports.login = async (req,res) => {
                 var userid = results[0].id;
                 values.loginusername = results[0].username;
                 values.loginuserid = results[0].id;
+                values.role = results[0].Role;
+                console.log("role role is ",values.role);
                 console.log("active user is "+ values.loginusername + values.loginuserid);
                 //username1 = results[0].username;
                 database.query('select * from logs where User_id = ?', [userid], async (error,results) => {
@@ -50,7 +52,7 @@ exports.login = async (req,res) => {
                     }
                     else{
                         addlog.addlogs(results1);
-                        role.role = results[0].Role;
+                        // role.role = results[0].Role;
                         res.status(200).redirect("/home");
                         //res.status(200).render('pages/home',{message: username1});
                     }

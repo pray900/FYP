@@ -17,7 +17,7 @@ exports.invedit = (req,res) => {
                 errordisp("Inv does not exist to add Inv");
             }else{
                 console.log(result+ " addqtybtn inv sort and search");
-                res.render('pages/addInvQuantity',{name: values.loginusername, datas: result[0], msg: ""});
+                res.render('pages/addInvQuantity',{name: values.loginusername, datas: result[0], msg: "", role: values.role});
             }
         });
     }
@@ -30,7 +30,7 @@ exports.invedit = (req,res) => {
                     console.log(error);
                 } else {
                     console.log(result[0]+ " default inv sort and search");
-                    res.render('pages/inventory',{name: values.loginusername, datas: result, msg:errmsg});
+                    res.render('pages/inventory',{name: values.loginusername, datas: result, msg:errmsg, role: values.role});
                 }
             });
         }
@@ -72,7 +72,7 @@ exports.invdel = (req,res) => {
                     console.log(error);
                 } else {
                     console.log(result[0]+ " default inv sort and search");
-                    res.render('pages/inventory',{name: values.loginusername, datas: result, msg:errmsg});
+                    res.render('pages/inventory',{name: values.loginusername, datas: result, msg:errmsg, role: values.role});
                 }
             });
         }

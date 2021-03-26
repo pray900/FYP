@@ -7,7 +7,6 @@ exports.newsales = (req,res) => {
 
     const { name, saletype, date, qty, salesprice, custid, profit, invid, subbtn} = req.body;
 
-
     if(subbtn == "addbtn"){
 
         shopselector.currentshop(function(response){
@@ -28,7 +27,7 @@ exports.newsales = (req,res) => {
             })
         }
     }else if(subbtn == "newcustbtn"){
-        res.render('pages/addCustomer',{name: values.loginusername, msg:""});
+        res.render('pages/addCustomer',{name: values.loginusername, msg:"", role: values.role});
     }
 
     function errordisp(errmsg){
@@ -37,7 +36,7 @@ exports.newsales = (req,res) => {
             database.query('select * from customer where shop_id = ?',[reshopid], function (error, result1) {
                 if (error) {
                     console.log(error);
-                    res.render('pages/newSales',{name: values.loginusername, datas1: result1, datas:"", msg:errmsg});
+                    res.render('pages/newSales',{name: values.loginusername, datas1: result1, datas:"", msg:errmsg, role: values.role});
                 } else {
                     console.log(result1[0]+ " default sales cust");
     
@@ -51,7 +50,7 @@ exports.newsales = (req,res) => {
                                 console.log(error);
                             } else {
                                 console.log(result[0]+ " default inv sort and search");
-                                res.render('pages/newSales',{name: values.loginusername, datas: result, datas1: result1, msg:errmsg});
+                                res.render('pages/newSales',{name: values.loginusername, datas: result, datas1: result1, msg:errmsg, role: values.role});
                             }
                         });
                     }

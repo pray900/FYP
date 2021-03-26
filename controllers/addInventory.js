@@ -1,6 +1,9 @@
 const database = require("../database");
 const values = require("../values");
 const shopselector = require("./shopselector");
+//const qrcodefl = require("../qrcode.min.js");
+var QRCode = require('qrcode');
+
 
 // function currentshop(callback){
 //     if(!values.submittedshop){
@@ -19,14 +22,54 @@ exports.addInv = (req,res) => {
 
     const { name, invtype, supplier, costprice, quantity, salesprice} = req.body;
 
-    if ( !name || !supplier || !costprice || !quantity || !salesprice || Number.isInteger(parseInt(costprice)) == false || Number.isInteger(parseInt(salesprice)) == false || Number.isInteger(parseInt(quantity)) == false) {
+    var url;
+    var objs = [{ name, invtype, supplier, costprice, quantity, salesprice}];
+
+    // let try = new promise((succ,fail) => {      
+    //     QRCode.toDataURL(objs, { version: 3 }, function (err, obz) {
+    //         if(err){
+    //             console.log(err);
+    //             res.send("error");
+    //         }
+    //         url = obz;
+    //         console.log(obz);
+    //     })
+    // })
+
+    function dishqr(){      
+        QRCode.toDataURL(objs, { version: 6 }, function (err, obz) {
+            if(err){
+                console.log(err);
+                res.send("error");
+            }
+            url = obz;
+            console.log(obz);
+        })
+    }
+
+    // var qrcode = new qrcodefl.QRCode("output",{
+    //     text:"hello",
+    //     width:256,
+    //     height:256,
+    //     colorDark: "#990000",
+    //     colorLight:"#ffffff",
+    //     correctLevel:QRCode.CorrectLevel.H
+    // });
+    // qrcode.clear();
+    // qrcode.makeCode("hello2");
+
+
+
+    if ( !name || !invtype || !supplier || !costprice || !quantity || !salesprice || Number.isInteger(parseInt(costprice)) == false || Number.isInteger(parseInt(salesprice)) == false || Number.isInteger(parseInt(quantity)) == false) {
+        dishqr();
         return res.render('pages/addInv', {
-            msg: "Enter Valid Informations", name: values.loginusername, vals: {name, invtype, supplier, costprice, quantity, salesprice}
+            msg: "Enter Valid Informations", pic: url, name: values.loginusername, vals: {name, invtype, supplier, costprice, quantity, salesprice}, role: values.role
         });
     }
 
     shopselector.currentshop(function(response){
         console.log(response + "  current shop func res");
+        dishqr();
         mainquery(response)
     });
     
@@ -57,7 +100,7 @@ exports.addInv = (req,res) => {
             if (error) {
                 console.log(error);
                 return res.render('pages/addInv', {
-                    msg: "error", name: values.loginusername,vals: {name, invtype, supplier, costprice, quantity, salesprice}
+                    msg: "error", pic: url, name: values.loginusername,vals: {name, invtype, supplier, costprice, quantity, salesprice}, role: values.role
                 });
             } else {
                 invidfetch();
@@ -76,7 +119,7 @@ exports.addInv = (req,res) => {
             if (error) {
                 console.log(error);
                 return res.render('pages/addInv', {
-                    msg: "error in invidfetch", name: values.loginusername,vals: {name, invtype, supplier, costprice, quantity, salesprice}
+                    msg: "error in invidfetch", pic: url, name: values.loginusername,vals: {name, invtype, supplier, costprice, quantity, salesprice}, role: values.role
                 });
             } else {
                 console.log(result[0].inv_id, "inv id");
@@ -91,11 +134,11 @@ exports.addInv = (req,res) => {
             if (error) {
                 console.log(error);
                 return res.render('pages/addInv', {
-                    msg: "error", name: values.loginusername,vals: {name, invtype, supplier, costprice, quantity, salesprice}
+                    msg: "error", pic: url, name: values.loginusername,vals: {name, invtype, supplier, costprice, quantity, salesprice}, role: values.role
                 });
             } else {
                 return res.render('pages/addInv', {
-                    msg: "Success", name: values.loginusername,vals: {name, invtype, supplier, costprice, quantity, salesprice}
+                    msg: "Success", pic: url, name: values.loginusername,vals: {name, invtype, supplier, costprice, quantity, salesprice}, role: values.role
                 });
             }
         })

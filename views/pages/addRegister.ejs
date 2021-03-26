@@ -93,7 +93,7 @@
             <!-- Divider -->
             <hr class="sidebar-divider my-0">
 
-            <li class="nav-item active">
+            <li class="nav-item active" >
                 <a class="nav-link" href="/register">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Register</span></a>
@@ -139,11 +139,17 @@
                             <div class="col-xl-5 col-md-6 mb-1 ml-5">
                                 <!-- <p style="color: red; font-size: large; margin: 0;"><%= msg %></p> -->
                                 <label for="inputAddress" class="mt-2">Name</label>
-                                <input type="text" class="form-control lengther" id="inputAddress" name="name">
+                                <input type="text" class="form-control lengther" id="inputAddress" name="name" <% if (vals.name) { %>
+                                    value = <%= vals.name %>
+                                <% } %>  >
                                 <label for="inputAddress" class="mt-2">Email</label>
-                                <input type="text" class="form-control lengther" id="inputAddress" name="email">
+                                <input type="text" class="form-control lengther" id="inputAddress" name="email" <% if (vals.email) { %>
+                                    value = <%= vals.email %>
+                                <% } %>  >
                                 <label for="inputAddress" class="mt-2">Username</label>
-                                <input type="text" class="form-control lengther" id="inputAddress" name="username">
+                                <input type="text" class="form-control lengther" id="inputAddress" name="username" <% if (vals.username) { %>
+                                    value = <%= vals.username %>
+                                <% } %>  >
                                 <!-- <label for="inputAddress" class="mt-2">Password</label>
                                 <input type="text" class="form-control lengther" id="inputAddress" name="password">
                                 <label for="inputAddress" class="mt-2">Retype-Password</label>
@@ -153,19 +159,25 @@
                             <div class="col-xl-5 col-md-6 mb-1">
                                 <label for="inputAddress" class="mt-2">Roles</label>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="type" id="flexRadioDefault1" value="Inventory">
+                                    <input class="form-check-input" type="radio" name="type" id="flexRadioDefault1" value="Inventory" <% if (vals.type && vals.type=="Inventory") { %>
+                                        checked
+                                    <% } %> >
                                     <label class="form-check-label" for="inventory">
                                       Inventory
                                     </label>
                                   </div>
                                   <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="type" id="flexRadioDefault2" value="Sales"
+                                    <input class="form-check-input" type="radio" name="type" id="flexRadioDefault2" value="Sales" <% if (vals.type && vals.type=="Sales") { %>
+                                        checked
+                                       <% } %>>
                                     <label class="form-check-label" for="sales">
                                       Sales
                                     </label>
                                   </div>
                                   <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="type" id="flexRadioDefault3" value="Owner">
+                                    <input class="form-check-input" type="radio" name="type" id="flexRadioDefault3" value="Owner" <% if (vals.type && vals.type=="Owner") { %>
+                                        checked
+                                       <% } %>>
                                     <label class="form-check-label" for="owner">
                                       Owner
                                     </label>

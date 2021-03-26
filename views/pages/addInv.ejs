@@ -93,7 +93,7 @@
             <!-- Divider -->
             <hr class="sidebar-divider my-0">
 
-            <li class="nav-item">
+            <li class="nav-item" style= <% if (role.toUpperCase() =="INVENTORY" || role.toUpperCase() == "SALES") { %> <%= "display:none;" %> <% } %>>
                 <a class="nav-link" href="/register">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Register</span></a>
@@ -165,6 +165,11 @@
                                 <input type="text" class="form-control lengther" name="salesprice" <% if (vals.salesprice) { %>
                                     value = <%= vals.salesprice %>
                                 <% } %>  >
+                                <% if (pic) { %>
+                                <div>
+                                    <img src=<%= pic %> alt="">
+                                </div>
+                                <% } %>
                                 <button type="submit" class="btn btn-primary mt-4">Add Inventory</button>
                             </div>                        
                         </div>

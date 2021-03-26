@@ -93,7 +93,9 @@
             <!-- Divider -->
             <hr class="sidebar-divider my-0">
 
-            <li class="nav-item">
+            
+            
+            <li class="nav-item" style= <% if (role.toUpperCase() =="INVENTORY" || role.toUpperCase() == "SALES") { %> <%= "display:none;" %> <% } %> >
                 <a class="nav-link" href="/register">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Register</span></a>

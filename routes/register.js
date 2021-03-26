@@ -22,7 +22,7 @@ module.exports = () => {
         //res.render('pages/register',{name: values.loginusername});
     });
     router.get("/addUser", (req,res)=>{
-        res.render('pages/addRegister',{name: values.loginusername, msg: ""});
+        res.render('pages/addRegister',{name: values.loginusername, msg: "", vals:{name:"", email:"", username:"", type:""}});
     });
 
     router.post("/search", RegisterSearch.regsrc);

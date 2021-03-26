@@ -31,7 +31,7 @@ exports.salesdel = (req,res) => {
                     console.log(error);
                 } else {
                     console.log(result[0]+ " default sales sort and search");
-                    res.render('pages/sales',{name: values.loginusername, datas: result, msg:errmsg});
+                    res.render('pages/sales',{name: values.loginusername, datas: result, msg:errmsg, role: values.role});
                 }
             });
         }

@@ -38,8 +38,9 @@ module.exports = () => {
                             console.log(error);
                         } else {
                             console.log(result1[0]+ " default inv sort and search");
+                            console.log(values.role," vals rolesss");
                             //res.render('pages/inventory',{name: values.loginusername, datas: result, msg:""});
-                            res.render('pages/home', {name: values.loginusername, shoplist1: result, defshop: result[0].Name, datas: result1, selectedshop: values.submittedshop, ts: ts, tc: tc, ti: ti, tl: tl});
+                            res.render('pages/home', {name: values.loginusername, shoplist1: result, defshop: result[0].Name, datas: result1, selectedshop: values.submittedshop, ts: ts, tc: tc, ti: ti, tl: tl, role: values.role});
                         }
                     });
                 }

@@ -12,7 +12,7 @@ module.exports = () => {
                 console.log(error);
             } else {
                 console.log(result[0]+ " default logs sort and search");
-                res.render('pages/logs',{name: values.loginusername, datas: result, msg:""});
+                res.render('pages/logs',{name: values.loginusername, datas: result, msg:"", role:values.role});
             }
         });
 

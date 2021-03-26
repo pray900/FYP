@@ -21,6 +21,7 @@ var defaultshopname ="";
 
 var searchboxval ="";
 
+var role = "";
 
 module.exports.name;
 module.exports.email;
@@ -40,3 +41,4 @@ module.exports.defaultshopid;
 module.exports.defaultshopname;
 module.exports.searchboxval;
 module.exports.loginuserid;
+module.exports.role;

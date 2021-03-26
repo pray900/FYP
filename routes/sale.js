@@ -22,7 +22,7 @@ module.exports = () => {
                     console.log(error);
                 } else {
                     console.log(result[0]+ " default inv sort and search");
-                    res.render('pages/sales',{name: values.loginusername, datas: result, msg:""});
+                    res.render('pages/sales',{name: values.loginusername, datas: result, msg:"", role: values.role});
                 }
             });
         }
@@ -40,7 +40,7 @@ module.exports = () => {
             database.query('select * from customer where shop_id = ?',[reshopid], function (error, result1) {
                 if (error) {
                     console.log(error);
-                    res.render('pages/newSales',{name: values.loginusername, datas1: result1, datas:"", msg:"error"});
+                    res.render('pages/newSales',{name: values.loginusername, datas1: result1, datas:"", msg:"error", role: values.role});
                 } else {
                     console.log(result1[0]+ " default sales cust");
     
@@ -54,7 +54,7 @@ module.exports = () => {
                                 console.log(error);
                             } else {
                                 console.log(result[0]+ " default inv sort and search");
-                                res.render('pages/newSales',{name: values.loginusername, datas: result, datas1: result1, msg:""});
+                                res.render('pages/newSales',{name: values.loginusername, datas: result, datas1: result1, msg:"", role: values.role});
                             }
                         });
                     }

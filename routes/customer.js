@@ -22,7 +22,7 @@ module.exports = () => {
                     console.log(error);
                 } else {
                     console.log(result[0]+ " default cust sort and search");
-                    res.render('pages/customer',{name: values.loginusername, datas: result, msg:""});
+                    res.render('pages/customer',{name: values.loginusername, datas: result, msg:"", role: values.role});
                 }
             });
         }
@@ -30,7 +30,7 @@ module.exports = () => {
         //res.render('pages/customer',{name: values.loginusername});
     });
     router.get("/addCust", (req,res)=>{
-        res.render('pages/addCustomer',{name: values.loginusername, msg:""});
+        res.render('pages/addCustomer',{name: values.loginusername,vals:{name:"", email:"", number:"", address:""}, msg:"", role: values.role});
     });
 
     router.post("/search", CustomerSearch.custsrc);

@@ -93,7 +93,7 @@
             <!-- Divider -->
             <hr class="sidebar-divider my-0">
 
-            <li class="nav-item">
+            <li class="nav-item" style= <% if (role.toUpperCase() =="INVENTORY" || role.toUpperCase() == "SALES") { %> <%= "display:none;" %> <% } %>>
                 <a class="nav-link" href="/register">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Register</span></a>
@@ -249,7 +249,7 @@
 
                         <!-- Earnings (Monthly) Card Example -->
                         <div class="col-xl-2 col-md-2 mb-2 liner3">
-                            <button type="button" onclick="window.location='/customer/addCust'" class="btn btn-primary">Add Customer</button>
+                            <button type="button" onclick="window.location='/customer/addCust'" class="btn btn-primary" <% if (role.toUpperCase() == "INVENTORY") { %> <%= "disabled" %> <% } %>>Add Customer</button>
                         </div>
                     </div>
                     <div class="row mt-4">
@@ -285,8 +285,8 @@
                                         <td><%=data.shop_id %></td>
                                         <td><%=data.user_id %></td>
                                         <td>
-                                            <a href="/customer/editbtn/<%=data.customer_id %>" type="button" class="btn btn-primary mb-2">Edit</a>
-                                            <a href="/customer/deletebtn/<%=data.customer_id %>" type="button" class="btn btn-primary mb-2">Delete</a>
+                                            <a href="/customer/editbtn/<%=data.customer_id %>" type="button" class="btn btn-primary mb-2" style= <% if (role.toUpperCase() == "INVENTORY") { %> <%= "display:none" %> <% } %>>Edit</a>
+                                            <a href="/customer/deletebtn/<%=data.customer_id %>" type="button" class="btn btn-primary mb-2" style= <% if (role.toUpperCase() == "INVENTORY") { %> <%= "display:none" %> <% } %>>Delete</a>
                                         </td>
                                       </tr>
                                         <% }) %>

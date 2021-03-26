@@ -93,7 +93,7 @@
             <!-- Divider -->
             <hr class="sidebar-divider my-0">
 
-            <li class="nav-item">
+            <li class="nav-item" style= <% if (role.toUpperCase() =="INVENTORY" || role.toUpperCase() == "SALES") { %> <%= "display:none;" %> <% } %> >
                 <a class="nav-link" href="/register">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Register</span></a>
@@ -274,7 +274,7 @@
 
                         <!-- Earnings (Monthly) Card Example -->
                         <div class="col-xl-2 col-md-2 mb-2 liner3">
-                            <button type="button" onclick="window.location='/inventory/addInv'" class="btn btn-primary">Add Inventory</button>
+                            <button type="button" onclick="window.location='/inventory/addInv'" class="btn btn-primary" <% if (role.toUpperCase() == "SALES") { %> <%= 'disabled' %> <% } %> >Add Inventory</button>
                         </div>
                     </div>
                     <div class="row mt-4">
@@ -313,8 +313,8 @@
                                         <td><%=data.supplier %></td>
                                         <td><%=data.sales_price %></td>
                                         <td>
-                                            <a href="/inventory/addqtybtn/<%=data.inv_id %>" type="button" class="btn btn-primary mb-2">AddQty</a>
-                                            <a href="/inventory/deletebtn/<%=data.inv_id %>" type="button" class="btn btn-primary mb-2">Delete</a>
+                                            <a href="/inventory/addqtybtn/<%=data.inv_id %>" type="button" class="btn btn-primary mb-2" style= <% if (role.toUpperCase() == "SALES") { %> <%= "display:none" %> <% } %> >AddQty</a>
+                                            <a href="/inventory/deletebtn/<%=data.inv_id %>" type="button" class="btn btn-primary mb-2" style= <% if (role.toUpperCase() == "SALES") { %> <%= "display:none" %> <% } %> >Delete</a>
                                             <a href="/inventory/historybtn/<%=data.inv_id %>" type="button" class="btn btn-primary mb-2">History</a>
                                         </td>
 

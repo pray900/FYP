@@ -8,6 +8,10 @@ exports.editCustomer = (req,res) => {
 
     const { mainid, name, email, number, address} = req.body;
 
+    if(!name || !email || !number || !address){
+        return res.render('pages/editCustomer',{name: values.loginusername, datas: { customer_id: mainid, name: name, email: email, address: address, number: number}, msg:"Enter All Details", role: values.role});
+    }
+
     shopselector.currentshop(function(response){
         console.log(response + "  current shop func res");
         mainquery(response)
@@ -18,9 +22,9 @@ exports.editCustomer = (req,res) => {
         database.query('update customer set name = ? , email = ? , number = ? , address = ? where customer_id = ?', [name, email, number, address, mainid], (error, result) => {
             if (error) {
                 console.log(error);
-                return res.render('pages/editCustomer',{name: values.loginusername, datas: { customer_id: mainid, name: name, email: email, address: address, number: number}, msg:"error"});
+                return res.render('pages/editCustomer',{name: values.loginusername, datas: { customer_id: mainid, name: name, email: email, address: address, number: number}, msg:"error", role: values.role});
             } else {
-                return res.render('pages/editCustomer',{name: values.loginusername, datas: { customer_id: mainid, name: name, email: email, address: address, number: number}, msg:"customer successfully edited"});
+                return res.render('pages/editCustomer',{name: values.loginusername, datas: { customer_id: mainid, name: name, email: email, address: address, number: number}, msg:"customer successfully edited", role: values.role});
             }
         })
 

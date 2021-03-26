@@ -23,7 +23,7 @@ module.exports = () => {
                     console.log(error);
                 } else {
                     console.log(result[0]+ " default inv sort and search");
-                    res.render('pages/inventory',{name: values.loginusername, datas: result, msg:""});
+                    res.render('pages/inventory',{name: values.loginusername, datas: result, msg:"", role: values.role});
                 }
             });
         }
@@ -41,7 +41,7 @@ module.exports = () => {
     });
 
     router.get("/addInv", (req,res)=>{
-        res.render('pages/addInv',{name: values.loginusername,msg:"",vals: {name :"", invtype: "", supplier: "", costprice: "", quantity:"", salesprice:""}});
+        res.render('pages/addInv',{name: values.loginusername,msg:"",pic:"",vals: {name :"", invtype: "", supplier: "", costprice: "", quantity:"", salesprice:""}, role: values.role});
     });
 
     router.post("/search", InventorySearch.invsrc);

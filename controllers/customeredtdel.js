@@ -17,7 +17,7 @@ exports.custedit = (req,res) => {
                 errordisp("customer does not exist");
             }else{
                 console.log(result+ " edit customer sort and search");
-                res.render('pages/editCustomer',{name: values.loginusername, datas: result[0], msg: ""});
+                res.render('pages/editCustomer',{name: values.loginusername, datas: result[0], msg: "", role: values.role});
             }
         });
     }
@@ -30,7 +30,7 @@ exports.custedit = (req,res) => {
                     console.log(error);
                 } else {
                     console.log(result[0]+ " default inv sort and search");
-                    res.render('pages/customer',{name: values.loginusername, datas: result, msg:errmsg});
+                    res.render('pages/customer',{name: values.loginusername, datas: result, msg:errmsg, role: values.role});
                 }
             });
         }
@@ -70,7 +70,7 @@ exports.custdel = (req,res) => {
                     console.log(error);
                 } else {
                     console.log(result[0]+ " default inv sort and search");
-                    res.render('pages/customer',{name: values.loginusername, datas: result, msg:errmsg});
+                    res.render('pages/customer',{name: values.loginusername, datas: result, msg:errmsg, role: values.role});
                 }
             });
         }

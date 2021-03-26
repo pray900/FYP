@@ -34,7 +34,7 @@ exports.register = (req,res) => {
     if ( !name || !email || !username || !type) {
         console.log('enter all data')
             return res.render('pages/addRegister', {
-            msg: "Provide All Details", name: values.loginusername
+            msg: "Provide All Details", name: values.loginusername, vals:{name, email, username, type}
         })
     }
     //emailvalid(email);
@@ -46,7 +46,7 @@ exports.register = (req,res) => {
         if(result.length > 0){
             console.log('email or username already used');
             return res.render('pages/addRegister', {
-                msg: "email already used",name: values.loginusername
+                msg: "email already used",name: values.loginusername, vals:{name, email, username, type}
             });
         } 
         // else if( password !== repassword) {
@@ -75,7 +75,7 @@ exports.register = (req,res) => {
         console.log(error);
     } else {
         return res.render('pages/addRegister', {
-            msg: "success", name: values.loginusername
+            msg: "success", name: values.loginusername, vals:{name, email, username, type}
         });
     }
     });
