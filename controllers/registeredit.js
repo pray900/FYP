@@ -8,7 +8,7 @@ exports.regedit = (req,res) => {
         return res.render('pages/editRegister',{name: values.loginusername, datas: {id: mainid, Name: name, Email: email, Role: type, username: username}, msg:"Enter All Details"});
     }
 
-    database.query('update login set Name = ? , Email = ? , username = ? , Role = ? where id = ?', [name, email, username, type, mainid], (error, result) => {
+    database.query('update login set Name = ? , Email = ? , username = ? , Role = ? where id = ? and state = "s"', [name, email, username, type, mainid], (error, result) => {
         if (error) {
             console.log(error);
             return res.render('pages/editRegister',{name: values.loginusername, datas: {id: mainid, Name: name, Email: email, Role: type, username: username}, msg:"error"});

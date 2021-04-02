@@ -21,7 +21,7 @@ exports.newpwd = (req,res) => {
                 msg: "password mismatch"
             });
     }
-    database.query('select * from login where username = ?', [values.loginusername], async (error, results) => {
+    database.query('select * from login where username = ? and state = "s"', [values.loginusername], async (error, results) => {
         console.log(results)
         if ( !results[0] || !(await bcrypt.compare(CurrentPassword, results[0].password)) ){
             console.log(results+"  current password");
@@ -31,7 +31,7 @@ exports.newpwd = (req,res) => {
         }else{
             let hashedpwd = await bcrypt.hash(ConfirmPassword, 8);
             console.log(hashedpwd+ " new hashed password");
-            database.query('update login set password = ? where username = ?', [hashedpwd,values.loginusername], async (error, result) => {
+            database.query('update login set password = ? where username = ? and state = "s"', [hashedpwd,values.loginusername], async (error, result) => {
                 if (error) {
                     console.log(error);
                 } else {

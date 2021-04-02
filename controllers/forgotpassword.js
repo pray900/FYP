@@ -9,7 +9,7 @@ exports.forgotpassword = (req,res) => {
     const {username} = req.body;
     values.loginusername = username;
 
-    database.query('select * from login where username = ?', [username], async (error, results) => {
+    database.query('select * from login where username = ? and state = "s"', [username], async (error, results) => {
         console.log("username's email is "+ results[0].Email);
         if(error){
             console.log("error is"+error);
@@ -27,7 +27,7 @@ exports.forgotpassword = (req,res) => {
             console.log(rand+"  reset rand value");
             console.log(hashedpwd);
 
-            database.query('update login set password = ? where username = ?', [hashedpwd,username], async (error, result) => {
+            database.query('update login set password = ? where username = ? and state = "s"', [hashedpwd,username], async (error, result) => {
                 if (error) {
                     console.log(error);
                 } else {

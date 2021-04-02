@@ -10,7 +10,7 @@ const database = require('../database');
 module.exports = () => {
     router.get("/", (req,res)=>{
 
-            database.query('select * from login', function (error, result) {
+            database.query('select * from login where state = "s"', function (error, result) {
                 if (error) {
                     console.log(error);
                 } else {

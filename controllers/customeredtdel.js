@@ -9,7 +9,7 @@ exports.custedit = (req,res) => {
     });
 
     function mainquery(reshopid){
-        database.query('select * from customer where shop_id = ? and customer_id = ?',[reshopid, req.params.id], function (error, result) {
+        database.query('select * from customer where shop_id = ? and customer_id = ? and state = "s"',[reshopid, req.params.id], function (error, result) {
             if (error) {
                 console.log(error+" in editbtn");
                 errordisp("error in editbtn");
@@ -25,7 +25,7 @@ exports.custedit = (req,res) => {
     function errordisp(errmsg){
 
         function mainquery1(reshopid){
-            database.query('select * from customer where shop_id = ?',[reshopid], function (error, result) {
+            database.query('select * from customer where shop_id = ? and state = "s"',[reshopid], function (error, result) {
                 if (error) {
                     console.log(error);
                 } else {
@@ -48,7 +48,7 @@ exports.custdel = (req,res) => {
     });
 
     function mainquery(reshopid){
-        database.query('delete from customer where shop_id = ? and customer_id = ?',[reshopid, req.params.id], function (error, result) {
+        database.query('update customer set state = "d" where shop_id = ? and customer_id = ?',[reshopid, req.params.id], function (error, result) {
             console.log(result.affectedRows+" res in deletebtn");
             if (error) {
                 console.log(error+" in deletebtn");
@@ -65,7 +65,7 @@ exports.custdel = (req,res) => {
     function errordisp(errmsg){
 
         function mainquery1(reshopid){
-            database.query('select * from customer where shop_id = ?',[reshopid], function (error, result) {
+            database.query('select * from customer where shop_id = ? and state = "s"',[reshopid], function (error, result) {
                 if (error) {
                     console.log(error);
                 } else {

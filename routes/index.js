@@ -12,6 +12,7 @@ const register = require('./register');
 const auth = require('../controllers/login');
 const passport = require('passport');
 const changepwd = require('./changepwd');
+const qrcode = require('./qrcode');
 const forgotpassword = require('./forgotpassword');
 const selectshop = require('../controllers/shopselector');
 const codevalidate = require('../controllers/codevalidate');
@@ -58,6 +59,8 @@ module.exports = () => {
     router.get("/logout", (req,res)=>{
         res.render('pages/login',{message: ""});
     });
+
+    router.use("/qrcode", qrcode()); 
 
     return router;
 };

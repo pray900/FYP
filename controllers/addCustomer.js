@@ -18,7 +18,7 @@ exports.addCustomer = (req,res) => {
 
     function mainquery(reshopid){
 
-        database.query('insert into Customer set ? ', {Name: name, Email: email, Number: number, Address: address, shop_id: reshopid, user_id: values.loginuserid}, (error, result) => {
+        database.query('insert into Customer set ? ', {Name: name, Email: email, Number: number, Address: address, shop_id: reshopid, user_id: values.loginuserid, state: "s"}, (error, result) => {
             if (error) {
                 console.log(error);
                 return res.render('pages/addCustomer',{name: values.loginusername,vals:{name, email, number, address}, msg:"error", role: values.role});

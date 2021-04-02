@@ -13,7 +13,7 @@ exports.regsrc = (req,res) => {
             errordisp("search box is empty");
         }
 
-            database.query('select * from login where '+search+' like ?',['%'+searchbox+'%'], function (error, result) {
+            database.query('select * from login where state = "s" and '+search+' like ?',['%'+searchbox+'%'], function (error, result) {
                 if (error) {
                     console.log(error+" in searchbtn");
                     errordisp("error in search");
@@ -66,7 +66,7 @@ exports.regsrc = (req,res) => {
     // }
     else{
 
-        database.query('select * from login order by '+ search+' ASC', function (error, result) {
+        database.query('select * from login where state = "s" order by '+ search+' ASC', function (error, result) {
             if (error) {
                 console.log(error+" in sortbtn");
                 errordisp("error in sortqty");
@@ -83,7 +83,7 @@ exports.regsrc = (req,res) => {
 
     function errordisp(errmsg){
 
-        database.query('select * from login', function (error, result) {
+        database.query('select * from login where state = "s"', function (error, result) {
             if (error) {
                 console.log(error);
             } else {

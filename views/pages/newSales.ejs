@@ -139,23 +139,62 @@
                             <div class="col-xl-3 col-md-6 mb-1">
                                 <!-- <p style="color: red; font-size: large; margin: 0;"><%= msg %></p> -->
                                 <label for="inputAddress " class="mt-2">Name</label>
-                                <input type="text" class="form-control lengther" id="inputAddress" name="name">
+                                <input type="text" class="form-control lengther" id="inputAddress" name="name"<% if (vals.name) { %>
+                                    value = <%= vals.name %>
+                                <% } %>>
                                 <label for="inputAddress" class="mt-2">Sales Type</label>
-                                <input type="text" class="form-control lengther" id="inputAddress" name="saletype">
+                                <input type="text" class="form-control lengther" id="inputAddress" name="saletype"<% if (vals.saletype) { %>
+                                    value = <%= vals.saletype %>
+                                <% } %>>
                                 <label for="inputAddress" class="mt-2">Date Sold</label>
-                                <input type="text" class="form-control lengther" id="inputAddress" name="date">
-                                <label for="inputAddress" class="mt-2">Quantity</label>
-                                <input type="text" class="form-control lengther" id="inputAddress" name="qty">
-                                <label for="inputAddress" class="mt-2">Sales Price</label>
-                                <input type="text" class="form-control lengther" id="inputAddress" name="salesprice">
+                                <input type="text" class="form-control lengther" id="date" name="date"<% if (vals.date) { %>
+                                    value = <%= vals.date %>
+                                <% } %>>
+
+                                <div class="row">
+                                    <div class="col-xl-6 col-md-6 mb-1">
+                                        <label for="inputAddress" class="mt-2">Quantity</label>
+                                        <input type="text" class="form-control" onkeyup="changer()" id="qty" name="qty"<% if (vals.qty) { %>
+                                            value = <%= vals.qty %>
+                                        <% } %>>
+                                    </div>
+                                    <div class="col-xl-6 col-md-6 mb-1">
+                                        <label for="inputAddress" class="mt-2">Unit Price</label>
+                                        <input type="text" class="form-control" onkeyup="changer()" id="unitprice" name="salesprice"<% if (vals.salesprice) { %>
+                                            value = <%= vals.salesprice %>
+                                        <% } %>>
+                                    </div>
+                                </div>
+                                <!-- <label for="inputAddress" class="mt-2">Quantity</label>
+                                <input type="text" class="form-control lengther" id="inputAddress" name="qty"<% if (vals.qty) { %>
+                                    value = <%= vals.qty %>
+                                <% } %>> -->
+
+                                <!-- <label for="inputAddress" class="mt-2">Sales Price</label>
+                                <input type="text" class="form-control lengther" id="inputAddress" name="salesprice"<% if (vals.salesprice) { %>
+                                    value = <%= vals.salesprice %>
+                                <% } %>> -->
+
+                                <label for="inputAddress" class="mt-2">Total Price</label>
+                                <input type="text" class="form-control lengther" id="totalprice" name="totalprice" readonly <% if (vals.totalprice) { %>
+                                    value = <%= vals.totalprice %>
+                                <% } %>>
+
                             </div>
                             <div class="col-xl-3 col-md-6 mb-1">
                                 <label for="inputAddress " class="mt-2">Customer ID</label>
-                                <input type="text" class="form-control lengther" id="inputAddress" name="custid">
-                                <label for="inputAddress " class="mt-2">Profit</label>
-                                <input type="text" class="form-control lengther" id="inputAddress" name="profit">
+                                <input type="text" class="form-control lengther" id="inputAddress" name="custid"<% if (vals.custid) { %>
+                                    value = <%= vals.custid %>
+                                <% } %>>
+                                <!-- <label for="inputAddress " class="mt-2">Profit</label>
+                                <input type="text" class="form-control lengther" id="inputAddress" name="profit"<% if (vals.profit) { %>
+                                    value = <%= vals.profit %>
+                                <% } %>> -->
                                 <label for="inputAddress " class="mt-2">Inv ID</label>
-                                <input type="text" class="form-control lengther" id="inputAddress" name="invid">
+                                <input type="text" class="form-control lengther" id="inputAddress" name="invid"<% if (vals.invid) { %>
+                                    value = <%= vals.invid %>
+                                <% } %>>
+                                <button type="submit" class="btn btn-primary mt-4" name="subbtn" value="qrcode">Scan QRCode</button>
                                 <button type="submit" class="btn btn-primary mt-4" name="subbtn" value="addbtn">Add Sales</button>
                                 <button type="submit" class="btn btn-primary mt-4 d-flex" name="subbtn" value="newcustbtn">New Customer</button>
                             </div>
@@ -264,6 +303,13 @@
 
     </div>
     <!-- End of Page Wrapper -->
+    <script>
+        function changer() {
+            var x = document.getElementById("qty").value;
+            var y = document.getElementById("unitprice").value;
+            document.getElementById("totalprice").value = x*y;          
+        }
+    </script>
 
     <!-- Scroll to Top Button-->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>

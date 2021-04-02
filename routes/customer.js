@@ -17,7 +17,7 @@ module.exports = () => {
 
 
         function mainquery(reshopid){
-            database.query('select * from customer where shop_id = ?',[reshopid], function (error, result) {
+            database.query('select * from customer where shop_id = ? and state = ?',[reshopid,"s"], function (error, result) {
                 if (error) {
                     console.log(error);
                 } else {

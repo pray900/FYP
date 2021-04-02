@@ -151,8 +151,18 @@
                                 <input type="text" class="form-control lengther" id="inputAddress" name="costprice" value="<%=datas.cost_price %>">
                             </div>
                             <div class="col-xl-5 col-md-6 mb-1">
-                                <label for="inputAddress " class="mt-2">Quantity</label>
-                                <input type="text" class="form-control lengther" id="inputAddress" name="quantity" value="<%=datas.quantity %>">
+                                <div class="row">
+                                    <div class="col-xl-6 col-md-6 mb-1">
+                                        <label for="inputAddress " class="mt-2">Current Quantity</label>
+                                        <input type="text" class="form-control" id="quantity" name="quantity" value="<%=datas.quantity %>">
+                                    </div>
+                                    <div class="col-xl-6 col-md-6 mb-1">
+                                        <label for="inputAddress " class="mt-2">Add Quantity</label>
+                                        <input type="text" class="form-control" onkeyup="changer()" id="addqty" name="addqty" value="0">
+                                    </div>
+                                </div>
+                                <label for="inputAddress " class="mt-2">Total Quantity</label>
+                                <input type="text" class="form-control lengther" id="totalqty" value="<%=datas.quantity %>" name="totalqty">
                                 <label for="inputAddress " class="mt-2">Sales Price</label>
                                 <input type="text" class="form-control lengther" id="inputAddress" name="salesprice" value="<%=datas.sales_price %>">
                                 <button type="submit" class="btn btn-primary mt-4">Add Quantity</button>
@@ -180,6 +190,18 @@
 
     </div>
     <!-- End of Page Wrapper -->
+    <script>
+        function changer() {
+            var x = document.getElementById("quantity").value;
+            var y = document.getElementById("addqty").value;
+            if(!y){
+                document.getElementById("totalqty").value = x;
+            }else{
+                var z = parseInt(x)+parseInt(y);
+                document.getElementById("totalqty").value = z;
+            }        
+        }
+    </script>
 
     <!-- Scroll to Top Button-->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>

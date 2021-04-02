@@ -23,7 +23,8 @@ exports.addInv = (req,res) => {
     const { name, invtype, supplier, costprice, quantity, salesprice} = req.body;
 
     var url;
-    var objs = [{ name, invtype, supplier, costprice, quantity, salesprice}];
+    //var objs = [ name," ", invtype," ", supplier," ", costprice," ", quantity," ", salesprice];
+    //var objs = [ invid," ",name," ", salesprice];
 
     // let try = new promise((succ,fail) => {      
     //     QRCode.toDataURL(objs, { version: 3 }, function (err, obz) {
@@ -36,13 +37,15 @@ exports.addInv = (req,res) => {
     //     })
     // })
 
-    function dishqr(){      
-        QRCode.toDataURL(objs, { version: 6 }, function (err, obz) {
+    function dishqr(invidp){      
+        var objs = [invidp," ",name," ", salesprice];
+        QRCode.toDataURL(objs, { errorCorrectionLevel:'H' }, function (err, obz) {
             if(err){
                 console.log(err);
-                res.send("error");
+                res.send("errorsss");
             }
             url = obz;
+            console.log(objs[0],"invidp");
             console.log(obz);
         })
     }
@@ -61,7 +64,6 @@ exports.addInv = (req,res) => {
 
 
     if ( !name || !invtype || !supplier || !costprice || !quantity || !salesprice || Number.isInteger(parseInt(costprice)) == false || Number.isInteger(parseInt(salesprice)) == false || Number.isInteger(parseInt(quantity)) == false) {
-        dishqr();
         return res.render('pages/addInv', {
             msg: "Enter Valid Informations", pic: url, name: values.loginusername, vals: {name, invtype, supplier, costprice, quantity, salesprice}, role: values.role
         });
@@ -69,8 +71,8 @@ exports.addInv = (req,res) => {
 
     shopselector.currentshop(function(response){
         console.log(response + "  current shop func res");
-        dishqr();
-        mainquery(response)
+        mainquery(response);
+        //dishqr();
     });
     
     // if(!values.submittedshop){
@@ -95,7 +97,7 @@ exports.addInv = (req,res) => {
     // })
 
     function mainquery(reshopid){
-        database.query('insert into Inventory set ? ', {name: name, inv_type: invtype, supplier: supplier, cost_price: costprice, Quantity: quantity, sales_price: salesprice, shop_id: reshopid}
+        database.query('insert into Inventory set ? ', {name: name, inv_type: invtype, supplier: supplier, cost_price: costprice, Quantity: quantity, sales_price: salesprice, shop_id: reshopid, state: "s"}
         , (error, result) => {
             if (error) {
                 console.log(error);
@@ -112,9 +114,9 @@ exports.addInv = (req,res) => {
     }
 
     var today = new Date();
-
+    //var invid = "";
     function invidfetch(){
-        database.query('select inv_id from inventory where name = ? and inv_type = ? and supplier = ? and cost_price = ?', [name, invtype, supplier, costprice]
+        database.query('select inv_id from inventory where name = ? and inv_type = ? and supplier = ? and cost_price = ? and state = "s"', [name, invtype, supplier, costprice]
         , (error, result) => {
             if (error) {
                 console.log(error);
@@ -122,7 +124,9 @@ exports.addInv = (req,res) => {
                     msg: "error in invidfetch", pic: url, name: values.loginusername,vals: {name, invtype, supplier, costprice, quantity, salesprice}, role: values.role
                 });
             } else {
+                //invid = result[0].inv_id;
                 console.log(result[0].inv_id, "inv id");
+                dishqr(String(result[0].inv_id));
                 hist(result[0].inv_id,name,quantity);
             }
         })

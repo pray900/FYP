@@ -19,7 +19,7 @@ exports.editCustomer = (req,res) => {
 
     function mainquery(reshopid){
 
-        database.query('update customer set name = ? , email = ? , number = ? , address = ? where customer_id = ?', [name, email, number, address, mainid], (error, result) => {
+        database.query('update customer set name = ? , email = ? , number = ? , address = ? where customer_id = ? and state = "s"', [name, email, number, address, mainid], (error, result) => {
             if (error) {
                 console.log(error);
                 return res.render('pages/editCustomer',{name: values.loginusername, datas: { customer_id: mainid, name: name, email: email, address: address, number: number}, msg:"error", role: values.role});

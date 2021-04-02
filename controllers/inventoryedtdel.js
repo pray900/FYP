@@ -9,7 +9,7 @@ exports.invedit = (req,res) => {
     });
 
     function mainquery(reshopid){
-        database.query('select * from inventory where shop_id = ? and inv_id = ?',[reshopid, req.params.id], function (error, result) {
+        database.query('select * from inventory where shop_id = ? and inv_id = ? and state = "s"',[reshopid, req.params.id], function (error, result) {
             if (error) {
                 console.log(error+" in addqtybtn");
                 errordisp("error in addqty");
@@ -25,7 +25,7 @@ exports.invedit = (req,res) => {
     function errordisp(errmsg){
 
         function mainquery1(reshopid){
-            database.query('select * from inventory where shop_id = ?',[reshopid], function (error, result) {
+            database.query('select * from inventory where shop_id = ? and state = "s"',[reshopid], function (error, result) {
                 if (error) {
                     console.log(error);
                 } else {
@@ -49,7 +49,7 @@ exports.invdel = (req,res) => {
     });
     
     function mainquery(reshopid){
-        database.query('delete from inventory where shop_id = ? and inv_id = ?',[reshopid, req.params.id], function (error, result) {
+        database.query('update inventory set state = "d" where shop_id = ? and inv_id = ?',[reshopid, req.params.id], function (error, result) {
             console.log(result.affectedRows+" res in deletebtn");
             if (error) {
                 console.log(error+" in deletebtn");
@@ -67,7 +67,7 @@ exports.invdel = (req,res) => {
     function errordisp(errmsg){
 
         function mainquery1(reshopid){
-            database.query('select * from inventory where shop_id = ?',[reshopid], function (error, result) {
+            database.query('select * from inventory where shop_id = ? and state = "s"',[reshopid], function (error, result) {
                 if (error) {
                     console.log(error);
                 } else {

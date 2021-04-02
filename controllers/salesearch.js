@@ -18,7 +18,7 @@ exports.salesrc = (req,res) => {
         });
 
         function mainquery(reshopid){
-            database.query('select * from sales where shop_id = ? and '+search+' like ?',[reshopid, '%'+searchbox+'%'], function (error, result) {
+            database.query('select * from sales where shop_id = ? and state = "s" and '+search+' like ?',[reshopid, '%'+searchbox+'%'], function (error, result) {
                 if (error) {
                     console.log(error+" in searchbtn");
                     errordisp("error in search");
@@ -65,7 +65,7 @@ exports.salesrc = (req,res) => {
         });
 
         function mainquery(reshopid){
-            database.query('select * from sales where shop_id = ? order by '+ search+' ASC',[reshopid], function (error, result) {
+            database.query('select * from sales where shop_id = ? and state = "s" order by '+ search+' ASC',[reshopid], function (error, result) {
                 if (error) {
                     console.log(error+" in sortbtn");
                     errordisp("error in sortqty");
@@ -85,7 +85,7 @@ exports.salesrc = (req,res) => {
     function errordisp(errmsg){
 
         function mainquery1(reshopid){
-            database.query('select * from sales where shop_id = ?',[reshopid], function (error, result) {
+            database.query('select * from sales where shop_id = ? and state = "s"',[reshopid], function (error, result) {
                 if (error) {
                     console.log(error);
                 } else {

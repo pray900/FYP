@@ -9,7 +9,7 @@ exports.salesdel = (req,res) => {
     });
 
     function mainquery(reshopid){
-        database.query('delete from sales where shop_id = ? and sales_id = ?',[reshopid, req.params.id], function (error, result) {
+        database.query('update sales set state = "d" where shop_id = ? and sales_id = ?',[reshopid, req.params.id], function (error, result) {
             console.log(result.affectedRows+" res in deletebtn");
             if (error) {
                 console.log(error+" in deletebtn");
@@ -26,7 +26,7 @@ exports.salesdel = (req,res) => {
     function errordisp(errmsg){
 
         function mainquery1(reshopid){
-            database.query('select * from sales where shop_id = ?',[reshopid], function (error, result) {
+            database.query('select * from sales where shop_id = ? and state = "s"',[reshopid], function (error, result) {
                 if (error) {
                     console.log(error);
                 } else {

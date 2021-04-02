@@ -17,7 +17,7 @@ module.exports = () => {
 
 
         function mainquery(reshopid){
-            database.query('select * from sales where shop_id = ?',[reshopid], function (error, result) {
+            database.query('select * from sales where shop_id = ? and state = "s"',[reshopid], function (error, result) {
                 if (error) {
                     console.log(error);
                 } else {
@@ -30,6 +30,8 @@ module.exports = () => {
         //res.render('pages/sales',{name: values.loginusername});
     });
 
+    var d = new Date();
+    var fulldate = d.getFullYear()+"/"+(d.getMonth()+1)+"/"+d.getDate();
     router.get("/newSale", (req,res)=>{
 
         shopselector.currentshop(function(response){
@@ -37,10 +39,10 @@ module.exports = () => {
         }); 
     
         function mainquery1(reshopid){
-            database.query('select * from customer where shop_id = ?',[reshopid], function (error, result1) {
+            database.query('select * from customer where shop_id = ? and state = "s"',[reshopid], function (error, result1) {
                 if (error) {
                     console.log(error);
-                    res.render('pages/newSales',{name: values.loginusername, datas1: result1, datas:"", msg:"error", role: values.role});
+                    res.render('pages/newSales',{name: values.loginusername, datas1: result1, datas:"", msg:"error", vals: {name: "", saletype: "", date: fulldate, qty: "",totalprice:"", salesprice: "", custid: "", invid: ""}, role: values.role});
                 } else {
                     console.log(result1[0]+ " default sales cust");
     
@@ -49,12 +51,12 @@ module.exports = () => {
                     });
              
                     function mainquery(reshopid){
-                        database.query('select * from inventory where shop_id = ?',[reshopid], function (error, result) {
+                        database.query('select * from inventory where shop_id = ? and state = "s"',[reshopid], function (error, result) {
                             if (error) {
                                 console.log(error);
                             } else {
                                 console.log(result[0]+ " default inv sort and search");
-                                res.render('pages/newSales',{name: values.loginusername, datas: result, datas1: result1, msg:"", role: values.role});
+                                res.render('pages/newSales',{name: values.loginusername,vals: {name: "", saletype: "", date: fulldate, qty: "", salesprice: "", custid: "", totalprice:"", invid: ""}, datas: result, datas1: result1, msg:"", role: values.role});
                             }
                         });
                     }

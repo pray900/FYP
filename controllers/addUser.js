@@ -39,7 +39,7 @@ exports.register = (req,res) => {
     }
     //emailvalid(email);
 
-    database.query('select email, username from login where email = ? or username = ?', [email, username], async (error, result) => {
+    database.query('select email, username from login where state = "s" and (email = ? or username = ?)', [email, username], async (error, result) => {
         if(error){
             console.log("error is"+error);
         }
@@ -70,7 +70,7 @@ exports.register = (req,res) => {
     //             message: "success"
     //         });
     //     }
-    database.query('insert into login set ? ', {name: name, email: email, password: hashedpwd, username: username, role: type}, async (error, result) => {
+    database.query('insert into login set ? ', {name: name, email: email, password: hashedpwd, username: username, role: type, state: "s"}, async (error, result) => {
     if (error) {
         console.log(error);
     } else {

@@ -4,7 +4,7 @@ const database = require('../database');
 
 exports.regedit = (req,res) => {
 
-    database.query('select * from login where id = ?',[req.params.id], function (error, result) {
+    database.query('select * from login where id = ? and state = "s"',[req.params.id], function (error, result) {
         if (error) {
             console.log(error+" in editbtn");
             errordisp("error in editbtn");
@@ -18,7 +18,7 @@ exports.regedit = (req,res) => {
 
     function errordisp(errmsg){
 
-        database.query('select * from login', function (error, result) {
+        database.query('select * from login where state = "s"', function (error, result) {
             if (error) {
                 console.log(error);
             } else {
@@ -32,7 +32,7 @@ exports.regedit = (req,res) => {
 
 exports.regdel = (req,res) => {
     
-    database.query('delete from login where id = ?',[req.params.id], function (error, result) {
+    database.query('update login set state = "d" where id = ?',[req.params.id], function (error, result) {
         console.log(result.affectedRows+" res in deletebtn");
         if (error) {
             console.log(error+" in deletebtn");
@@ -47,7 +47,7 @@ exports.regdel = (req,res) => {
 
     function errordisp(errmsg){
 
-        database.query('select * from login', function (error, result) {
+        database.query('select * from login where state = "s"', function (error, result) {
             if (error) {
                 console.log(error);
             } else {
