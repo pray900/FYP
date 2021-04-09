@@ -7,9 +7,9 @@ exports.regedit = (req,res) => {
     database.query('select * from login where id = ? and state = "s"',[req.params.id], function (error, result) {
         if (error) {
             console.log(error+" in editbtn");
-            errordisp("error in editbtn");
+            errordisp("Error in editbtn");
         } else if(!result[0]){
-            errordisp("login does not exist");
+            errordisp("Login does not exist");
         }else{
             console.log(result+ " edit register sort and search");
             res.render('pages/editRegister',{name: values.loginusername, datas: result[0], msg: ""});
@@ -36,12 +36,12 @@ exports.regdel = (req,res) => {
         console.log(result.affectedRows+" res in deletebtn");
         if (error) {
             console.log(error+" in deletebtn");
-            errordisp("error in delete");
+            errordisp("Error in delete");
         } else if(result.affectedRows == 0){                   
-            errordisp("login does not exist to delete");
+            errordisp("Login does not exist to delete");
         }else{
             console.log(result+ " deletebtn register sort and search");
-            errordisp("row deleted successfully");
+            errordisp("Row deleted successfully");
         }
     });
 

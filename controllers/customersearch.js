@@ -27,7 +27,7 @@ exports.custsrc = (req,res) => {
                     errordisp("Customer does not exist");
                 }else {
                     console.log(result+ " searchbtn cust sort and search");
-                    res.render('pages/customer',{name: values.loginusername, datas: result,msg:"searched", role: values.role});
+                    res.render('pages/customer',{name: values.loginusername, datas: result,msg:"Searched", role: values.role});
                 }
             });
         }
@@ -98,7 +98,7 @@ exports.custsrc = (req,res) => {
                     errordisp("No data to sort");
                 }else{
                     console.log(result+ " sortbtn cust sort and search");
-                    res.render('pages/customer',{name: values.loginusername, datas: result,msg:"sorted", role: values.role});
+                    res.render('pages/customer',{name: values.loginusername, datas: result,msg:"Sorted", role: values.role});
                 }
             });
         }

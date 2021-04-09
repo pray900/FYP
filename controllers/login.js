@@ -24,7 +24,7 @@ exports.login = async (req,res) => {
         if ( !username || !password) {
             console.log('empty username or password')
                 return res.render('pages/login', {
-                message: "please provide username and password"
+                message: "Please provide username and password"
             })
         }
 
@@ -34,7 +34,7 @@ exports.login = async (req,res) => {
             if ( !results[0] || !(await bcrypt.compare(password, results[0].password)) ){
                 console.log(results+"error username and password");
                 res.render('pages/login', {
-                    message: 'wrong username or password'
+                    message: 'Wrong username or password'
                 })
             } else {
                 var userid = results[0].id;
@@ -53,7 +53,8 @@ exports.login = async (req,res) => {
                     else{
                         addlog.addlogs(results1);
                         // role.role = results[0].Role;
-                        res.status(200).redirect("/home");
+                        //res.status(200).redirect("/home");
+                        res.status(200).redirect("/token");
                         //res.status(200).render('pages/home',{message: username1});
                     }
                 })

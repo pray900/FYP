@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+
+    <!-- Custom styles for this template-->
+    <link href="/css/overall.css" rel="stylesheet">
+    <link href="/css/home.css" rel="stylesheet">
+    <title>History</title>
+</head>
+<body id="page-top">
+    <div class="shadow p-3 mb-1 headertitle">
+        <div class="logo"></div>
+        <div class="businessname">
+            <h3 class="mb-0 text-white">MOKSH Enterprises</h3>
+        </div>
+    </div>
+ <!-- Page Wrapper -->
+ <div id="wrapper">
+    <!-- Sidebar -->
+    <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+
+        <!-- Sidebar - Brand -->
+        <a class="sidebar-brand d-flex align-items-center justify-content-center">
+            <div class="sidebar-brand-icon rotate-n-15">
+                <i class="fas fa-laugh-wink"></i>
+            </div>
+            <div class="sidebar-brand-text mx-3">Home</div>
+        </a>
+
+        <!-- Divider -->
+        <hr class="sidebar-divider my-0">
+
+        <!-- Nav Item - Dashboard -->
+        <li class="nav-item active">
+            <a class="nav-link" href="/home">
+                <i class="fas fa-fw fa-tachometer-alt"></i>
+                <span>Home</span></a>
+        </li>
+
+        <!-- Divider -->
+        <hr class="sidebar-divider my-0">
+
+        <!-- Nav Item - Charts -->
+        <li class="nav-item">
+            <a class="nav-link" href="/inventory">
+                <i class="fas fa-fw fa-tachometer-alt"></i>
+                <span>Inventory</span></a>
+        </li>
+
+        <hr class="sidebar-divider my-0">
+
+        <!-- Nav Item - Charts -->
+        <li class="nav-item">
+            <a class="nav-link" href="/sales">
+                <i class="fas fa-fw fa-tachometer-alt"></i>
+                <span>Sales</span></a>
+        </li>
+
+        <hr class="sidebar-divider my-0">
+
+        <!-- Nav Item - Charts -->
+        <li class="nav-item">
+            <a class="nav-link" href="/customer">
+                <i class="fas fa-fw fa-tachometer-alt"></i>
+                <span>Customer</span></a>
+        </li>
+
+        <hr class="sidebar-divider my-0">
+
+        <!-- Nav Item - Tables -->
+        <li class="nav-item">
+            <a class="nav-link" href="/logs">
+                <i class="fas fa-fw fa-tachometer-alt"></i>
+                <span>Logs</span></a>
+        </li>
+
+        <!-- Divider -->
+        <hr class="sidebar-divider my-0">
+
+        
+        
+        <li class="nav-item" >
+            <a class="nav-link" href="/register">
+                <i class="fas fa-fw fa-tachometer-alt"></i>
+                <span>Register</span></a>
+        </li>
+
+        <hr class="sidebar-divider d-none d-md-block">
+    </ul>
+    <!-- End of Sidebar -->
+
+    <!-- Content Wrapper -->
+    <div id="content-wrapper" class="d-flex flex-column">
+
+        <!-- Main Content -->
+        <div id="content">
+            
+            <!-- Topbar -->
+            <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+
+                <!-- Sidebar Toggle (Topbar) -->
+                <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+                    heloo
+                </button>
+
+                <div class="container-fluid" >
+                    <p>Hello,</p>
+                </div>
+                <a href="/logout" class=" d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
+                            class="fas fa-download fa-sm text-white-50"></i> Logout</a>
+                <!-- Topbar Navbar -->
+            </nav>
+            <!-- End of Topbar -->
+
+            <!-- Begin Page Content -->
+            <div class="container-fluid">
+
+                <div class="row">
+                    <!-- <div class="col-xl-4 col-md-6 mb-4 dropdown show">
+                        <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Shop
+                        </a>
+                        
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                            <a class="dropdown-item" href="/shop1">Shop 1</a>
+                            <a class="dropdown-item" href="/shop2">Shop 2</a>
+                        </div>
+                    </div> -->
+                    <div class="col-xl-6 col-md-6">
+                        <%
+                        var i ="";
+                        if(!selectedshop){
+                            i = defshop;
+                        } else {
+                            i = selectedshop;
+                        } %> 
+                        <label for="sel1">Current shop is : <%= i %> </label>
+                    </div>
+                    <form action="/submittedshop" method="POST">
+                        <div class="form-group col-xl-6 col-md-6 oneliner">
+                            <label for="sel1" class="spacer">Shop:</label>
+                            <select class="form-control ml-2" id="sel1" name="shop">
+                                <%
+                                shoplist1.forEach(function(data){
+                                %>
+                              <option value="<%=data.Name %>" name="shop"><%=data.Name %></option>
+                              <% }) %>
+                            </select>
+                            <button type="submit" class="btn btn-primary ml-2">Sort</button>                                
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Page Heading -->
+                <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                    <h4 class="h4 mb-0 text-gray-800">Summary</h4>
+                </div>
+
+                <!-- Content Row -->
+                
+                <div class="row">
+
+                    <!-- Earnings (Monthly) Card Example -->
+                    <div class="col-xl-4 col-md-6 mb-4">
+                        <div class="card border-left-primary shadow h-100 py-2">
+                            <div class="card-body">
+                                <div class="row no-gutters align-items-center">
+                                    <div class="col mr-2">
+                                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                            Total Sales</div>
+                                        <div class="h5 mb-0 font-weight-bold text-gray-800"><%= ts %></div>
+                                    </div>
+                                    <div class="col-auto">
+                                        <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Earnings (Monthly) Card Example -->
+                    <div class="col-xl-4 col-md-6 mb-4">
+                        <div class="card border-left-success shadow h-100 py-2">
+                            <div class="card-body">
+                                <div class="row no-gutters align-items-center">
+                                    <div class="col mr-2">
+                                        <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                            Total Profit</div>
+                                        <div class="h5 mb-0 font-weight-bold text-gray-800"><%= tp %></div>
+                                    </div>
+                                    <div class="col-auto">
+                                        <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Earnings (Monthly) Card Example -->
+                    <div class="col-xl-4 col-md-6 mb-4">
+                        <div class="card border-left-info shadow h-100 py-2">
+                            <div class="card-body">
+                                <div class="row no-gutters align-items-center">
+                                    <div class="col mr-2">
+                                        <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Total Logs
+                                        </div>
+                                        <div class="row no-gutters align-items-center">
+                                            <div class="col-auto">
+                                                <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800"><%= tl %></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-auto">
+                                        <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+
+                    <!-- Earnings (Monthly) Card Example -->
+                    <div class="col-xl-4 col-md-6 mb-4">
+                        <div class="card border-left-primary shadow h-100 py-2">
+                            <div class="card-body">
+                                <div class="row no-gutters align-items-center">
+                                    <div class="col mr-2">
+                                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                            Total Customers</div>
+                                        <div class="h5 mb-0 font-weight-bold text-gray-800"><%= tc %></div>
+                                    </div>
+                                    <div class="col-auto">
+                                        <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Earnings (Monthly) Card Example -->
+                    <div class="col-xl-4 col-md-6 mb-4">
+                        <div class="card border-left-success shadow h-100 py-2">
+                            <div class="card-body">
+                                <div class="row no-gutters align-items-center">
+                                    <div class="col mr-2">
+                                        <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                            Total Inventory</div>
+                                        <div class="h5 mb-0 font-weight-bold text-gray-800"><%= ti %></div>
+                                    </div>
+                                    <div class="col-auto">
+                                        <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class=" card shadow col-xl-12 col-md-12">
+                        <div class="card-header py-2">
+                            <h6 class="m-0 font-weight-bold text-primary">Low Inventories </h6>
+                        </div>
+                        <div class="card-body overflow-auto p-0" style="max-height: 20rem;">                       
+                            <table class="table table-striped">
+                                <thead class="thead-dark">
+                                  <tr>
+                                    <th scope="col">inv id</th>
+                                    <th scope="col">Name</th>
+                                    <th scope="col">inv type</th>
+                                    <th scope="col">qty</th>
+                                    <th scope="col">shop id</th>
+                                    <th scope="col">cost price</th>
+                                    <th scope="col">supplier</th>
+                                    <th scope="col">sales price</th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                    <%
+                                    if(datas.length!=0){
+                                    datas.forEach(function(data){
+                                    %>
+                                  <tr>
+                                    <th scope="row"><%=data.inv_id %></th>
+                                    <td><%=data.name %></td>
+                                    <td><%=data.inv_type %></td>
+                                    <td><%=data.quantity %></td>
+                                    <td><%=data.shop_id %></td>
+                                    <td><%=data.cost_price %></td>
+                                    <td><%=data.supplier %></td>
+                                    <td><%=data.sales_price %></td>
+                                  </tr>
+                                    <% }) %>
+                                    <% } else{ %>
+                                        <tr>
+                                            <td colspan="8">No Data Found</td>
+                                        </tr>
+                                    <% } %>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div> 
+            <!-- /.container-fluid -->
+
+        </div>
+        <!-- End of Main Content -->
+
+        <!-- Footer -->
+        <footer class="sticky-footer bg-white">
+            <div class="container my-auto">
+                <div class="copyright text-center my-auto">
+                    <span>Copyright &copy; Your Website 2020</span>
+                </div>
+            </div>
+        </footer>
+        <!-- End of Footer -->
+
+    </div>
+    <!-- End of Content Wrapper -->
+
+</div>
+<!-- End of Page Wrapper -->
+
+
+
+
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+    <script>
+        (function($) {
+  "use strict"; // Start of use strict
+
+  // Toggle the side navigation
+  $("#sidebarToggle, #sidebarToggleTop").on('click', function(e) {
+    $("body").toggleClass("sidebar-toggled");
+    $(".sidebar").toggleClass("toggled");
+    if ($(".sidebar").hasClass("toggled")) {
+      $('.sidebar .collapse').collapse('hide');
+    };
+  });
+
+  // Close any open menu accordions when window is resized below 768px
+  $(window).resize(function() {
+    if ($(window).width() < 768) {
+      $('.sidebar .collapse').collapse('hide');
+    };
+    
+    // Toggle the side navigation when window is resized below 480px
+    if ($(window).width() < 480 && !$(".sidebar").hasClass("toggled")) {
+      $("body").addClass("sidebar-toggled");
+      $(".sidebar").addClass("toggled");
+      $('.sidebar .collapse').collapse('hide');
+    };
+  });
+
+})(jQuery);
+    </script>
+</body>
+</html>

@@ -5,7 +5,7 @@ const nodemailer = require('nodemailer');
 
 exports.forgotpassword = (req,res) => {
 
-    console.log(req.body);
+    console.log(req.body,"username");
     const {username} = req.body;
     values.loginusername = username;
 
@@ -13,6 +13,9 @@ exports.forgotpassword = (req,res) => {
         console.log("username's email is "+ results[0].Email);
         if(error){
             console.log("error is"+error);
+            return res.render('pages/forgotpassword', {
+                message: "incorrect username"
+            });
         }
         if( !results[0]){
             console.log('username does not exist');

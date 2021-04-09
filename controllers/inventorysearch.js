@@ -1,6 +1,7 @@
 const values = require('../values');
 const shopselector = require('./shopselector');
 const database = require('../database');
+const toastr = require('toastr');
 
 exports.invsrc = (req,res) => {
 
@@ -11,7 +12,7 @@ exports.invsrc = (req,res) => {
     if(subbtn == "searchbtn"){
 
         if(!search || !searchbox){
-            errordisp("search box is empty");
+            errordisp("Search box is empty");
         }
 
         shopselector.currentshop(function(response){
@@ -22,12 +23,12 @@ exports.invsrc = (req,res) => {
             database.query('select * from inventory where shop_id = ? and state = "s" and '+search+' like ?',[reshopid, '%'+searchbox+'%'], function (error, result) {
                 if (error) {
                     console.log(error+" in searchbtn");
-                    errordisp("error in search");
+                    errordisp("Error in search");
                 }else if(!result[0]){
                     errordisp("Inv does not exist");
                 }else {
                     console.log(result+ " searchbtn inv sort and search");
-                    res.render('pages/inventory',{name: values.loginusername, datas: result,msg:"searched", role: values.role});
+                    res.render('pages/inventory',{name: values.loginusername, datas: result,msg:"Searched", role: values.role});
                 }
             });
         }
@@ -86,7 +87,7 @@ exports.invsrc = (req,res) => {
     // }
     else if(subbtn == "historybtn"){
         if(!search || !searchbox){
-            errordisp("search box is empty");
+            errordisp("Search box is empty");
         }
 
         
@@ -102,12 +103,12 @@ exports.invsrc = (req,res) => {
             database.query('select * from inventory where shop_id = ? and state = "s" order by '+ search+' ASC',[reshopid], function (error, result) {
                 if (error) {
                     console.log(error+" in sortbtn");
-                    errordisp("error in sortqty");
+                    errordisp("Error in sortqty");
                 } else if(!result){
                     errordisp("No data to sort");
                 }else{
                     console.log(result+ " sortbtn inv sort and search");
-                    res.render('pages/inventory',{name: values.loginusername, datas: result,msg:"sorted", role: values.role});
+                    res.render('pages/inventory',{name: values.loginusername, datas: result,msg:"Sorted", role: values.role});
                 }
             });
         }

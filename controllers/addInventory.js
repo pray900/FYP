@@ -127,7 +127,24 @@ exports.addInv = (req,res) => {
                 //invid = result[0].inv_id;
                 console.log(result[0].inv_id, "inv id");
                 dishqr(String(result[0].inv_id));
+                console.log(url,"url console")
+                // dbforqr(result[0].inv_id,name,quantity);
                 hist(result[0].inv_id,name,quantity);
+            }
+        })
+    }
+
+    function dbforqr(id){
+        database.query('update inventory set qrcode = ? where inv_id = ? and state = "s"',[url, id], (error, result1) => {
+            if(error) {
+                return res.render('pages/addInv', {
+                    msg: "error in inserting url to db", pic: url, name: values.loginusername,vals: {name, invtype, supplier, costprice, quantity, salesprice}, role: values.role
+                });
+            } else {
+                console.log("dbqr success"); 
+                return res.render('pages/addInv', {
+                    msg: "Success", pic: url, name: values.loginusername,vals: {name, invtype, supplier, costprice, quantity, salesprice}, role: values.role
+                });   
             }
         })
     }
@@ -141,9 +158,12 @@ exports.addInv = (req,res) => {
                     msg: "error", pic: url, name: values.loginusername,vals: {name, invtype, supplier, costprice, quantity, salesprice}, role: values.role
                 });
             } else {
-                return res.render('pages/addInv', {
-                    msg: "Success", pic: url, name: values.loginusername,vals: {name, invtype, supplier, costprice, quantity, salesprice}, role: values.role
-                });
+                console.log(url,"hist url");
+                dbforqr(invid);
+
+                // return res.render('pages/addInv', {
+                //     msg: "Success", pic: url, name: values.loginusername,vals: {name, invtype, supplier, costprice, quantity, salesprice}, role: values.role
+                // });
             }
         })
     }

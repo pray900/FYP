@@ -7,6 +7,8 @@ const AddSales = require('../controllers/addsales');
 const SaleSearch = require('../controllers/salesearch');
 const salesdel = require('../controllers/salesdel');
 
+const authmdlware = require('./../auth-middleware');
+
 module.exports = () => {
 
     router.get("/", (req,res)=>{
@@ -32,7 +34,7 @@ module.exports = () => {
 
     var d = new Date();
     var fulldate = d.getFullYear()+"/"+(d.getMonth()+1)+"/"+d.getDate();
-    router.get("/newSale", (req,res)=>{
+    router.get("/newSale",authmdlware(["role:Sales","role:Owner"]), (req,res)=>{
 
         shopselector.currentshop(function(response){
             mainquery1(response)
@@ -69,9 +71,9 @@ module.exports = () => {
         //res.render('pages/newSales',{name: values.loginusername, msg:""});
     });
 
-    router.post("/addsales", AddSales.newsales);
+    router.post("/addsales",authmdlware(["role:Sales","role:Owner"]), AddSales.newsales);
 
-    router.get("/deletebtn/:id", salesdel.salesdel);
+    router.get("/deletebtn/:id",authmdlware(["role:Sales","role:Owner"]), salesdel.salesdel);
 
     router.post("/search", SaleSearch.salesrc);
 

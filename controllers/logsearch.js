@@ -9,17 +9,17 @@ exports.logsrc = (req,res) => {
     if(subbtn == "searchbtn"){
 
         if(!search || !searchbox){
-            errordisp("search box is empty");
+            errordisp("Search box is empty");
         } 
         database.query('select * from logs where '+search+' like ?',['%'+searchbox+'%'], function (error, result) {
             if (error) {
                 console.log(error+" in searchbtn");
-                errordisp("error in search");
+                errordisp("Error in search");
             }else if(!result[0]){
                 errordisp("Logs does not exist");
             }else {
                 console.log(result+ " searchbtn logs sort and search");
-                res.render('pages/logs',{name: values.loginusername, datas: result,msg:"searched", role: values.role});
+                res.render('pages/logs',{name: values.loginusername, datas: result,msg:"Searched", role: values.role});
             }
         });
     }
@@ -29,12 +29,12 @@ exports.logsrc = (req,res) => {
         database.query('select * from logs order by '+ search+' ASC', function (error, result) {
             if (error) {
                 console.log(error+" in sortbtn");
-                errordisp("error in sortqty");
+                errordisp("Error in sortqty");
             } else if(!result){
                 errordisp("No data to sort");
             }else{
                 console.log(result+ " sortbtn logs sort and search");
-                res.render('pages/logs',{name: values.loginusername, datas: result,msg:"sorted", role: values.role});
+                res.render('pages/logs',{name: values.loginusername, datas: result,msg:"Sorted", role: values.role});
             }
         });
 

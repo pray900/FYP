@@ -8,10 +8,12 @@ const inventory = require('./inventory');
 const sale = require('./sale');
 const customer = require('./customer');
 const logs = require('./logs');
+const token = require('./token');
 const register = require('./register');
 const auth = require('../controllers/login');
 const passport = require('passport');
 const changepwd = require('./changepwd');
+const history = require('./history');
 const qrcode = require('./qrcode');
 const forgotpassword = require('./forgotpassword');
 const selectshop = require('../controllers/shopselector');
@@ -36,6 +38,8 @@ module.exports = () => {
     //    failureFlash: true
     //}));
 
+    router.use("/token", token());
+
     router.use("/addUser", addUser());
 
     router.use("/forgotpassword", forgotpassword());
@@ -53,6 +57,8 @@ module.exports = () => {
     router.use("/register", register());
 
     router.use("/changepwd", changepwd());
+
+    router.use("/history", history());
 
     router.post("/codevalid", codevalidate.validate);
 

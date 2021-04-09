@@ -52,12 +52,12 @@ exports.custdel = (req,res) => {
             console.log(result.affectedRows+" res in deletebtn");
             if (error) {
                 console.log(error+" in deletebtn");
-                errordisp("error in delete");
+                errordisp("Error in delete");
             } else if(result.affectedRows == 0){                   
-                errordisp("customer does not exist to delete");
+                errordisp("Customer does not exist to delete");
             }else{
                 console.log(result+ " deletebtn customer sort and search");
-                errordisp("row deleted successfully");
+                errordisp("Row deleted successfully");
             }
         });
     }

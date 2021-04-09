@@ -11,12 +11,10 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://rawgit.com/schmich/instascan-builds/master/instascan.min.js"></script>
 
-    <div class="container-fluid">
+    <div class="container mt-4">
         <div class="row">
             <div class="col-xl-8 col-md-8 mb-1">
-                <button class="btn btn-primary mb-3" onclick="window.location='/sales/newSale'">Back</button>
-                    <div class="alert alert-danger" id="msg" role="alert">
-                    </div>                           
+                <button class="btn btn-primary mb-3" onclick="window.location='/sales/newSale'">Back</button>                          
                 <div>
                     <video id="preview"></video>
                 </div>
@@ -24,11 +22,11 @@
             <div class="col-xl-4 col-md-4 mb-1">
                 <form action="/qrcode/scanned" method="POST">
                     <label for="inputAddress " class="mt-2">Name</label>
-                    <input type="text" class="form-control lengther" id="name" name="name" readonly>
+                    <input type="text" class="form-control lengther" id="name" name="name" >
                     <label for="inputAddress" class="mt-2">Sales Price</label>
-                    <input type="text" class="form-control lengther" id="salesp" name="salesprice" readonly>
+                    <input type="text" class="form-control lengther" id="salesp" name="salesprice" >
                     <label for="inputAddress " class="mt-2">Inv ID</label>
-                    <input type="text" class="form-control lengther" id="invid" name="invid" readonly>
+                    <input type="text" class="form-control lengther" id="invid" name="invid" >
                     <button type="submit" class="btn btn-primary mt-4" name="subbtn" value="addbtn">Add</button>
                 </form>
             </div>
@@ -39,7 +37,7 @@
         let scanner = new Instascan.Scanner({ video: document.getElementById('preview') });
         scanner.addListener('scan', function (content) {
             //alert(content);
-            document.getElementById("msg").value = "Read";
+            //document.getElementById("msg").value = "Read";
             var collector = content.split(" ");
             //alert(collector[0]);
             document.getElementById("name").value = collector[1];

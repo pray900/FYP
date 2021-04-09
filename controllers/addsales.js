@@ -17,21 +17,21 @@ exports.newsales = (req,res) => {
                 database.query('select * from customer where shop_id = ? and state = "s"',[reshopid], function (error, result1) {
                     if (error) {
                         console.log(error);
-                        res.render('pages/newSales',{name: values.loginusername,vals: {name, saletype, date: fulldate, qty, salesprice, custid, totalprice, invid}, datas1: result1, datas:"", msg:"enter all details", role: values.role});
+                        res.render('pages/newSales',{name: values.loginusername,vals: {name, saletype, date: fulldate, qty, salesprice, custid, totalprice, invid}, datas1: result1, datas:"", msg:"Enter all details", role: values.role});
                     } else {
                         console.log(result1[0]+ " default sales cust");
                     
                         shopselector.currentshop(function(response){
-                            mainquery(response)
+                            mainquery3(response);
                         });
                     
-                        function mainquery(reshopid){
+                        function mainquery3(reshopid){
                             database.query('select * from inventory where shop_id = ? and state = "s"',[reshopid], function (error, result) {
                                 if (error) {
-                                    console.log(error);
+                                    console.log(error);  
                                 } else {
                                     console.log(result[0]+ " default inv sort and search");
-                                    res.render('pages/newSales',{name: values.loginusername,vals: {name, saletype, date: fulldate, qty, salesprice, custid, totalprice, invid}, datas: result, datas1: result1, msg:"enter all details", role: values.role});
+                                    res.render('pages/newSales',{name: values.loginusername,vals: {name, saletype, date: fulldate, qty, salesprice, custid, totalprice, invid}, datas: result, datas1: result1, msg:"Enter all details", role: values.role});
                                 }
                             });
                         }
@@ -60,22 +60,22 @@ exports.newsales = (req,res) => {
                         , (error, result) => {
                         if (error) {
                             console.log(error);
-                            errordisp("error");
+                            errordisp("Error");
                         } else {
                             database.query('select quantity from inventory where inv_id = ? and state = "s"',[invid], function (error, result1) {
                                 if (error) {
-                                    errordisp("error in fetching qty");
+                                    errordisp("Error in fetching qty");
                                 }else{
                                     var newqty = result1[0].quantity - qty;
                                     database.query('update inventory set quantity = ? where inv_id = ? and state = "s"',[newqty, invid], function (error, result) {
                                         if (error) {
-                                            errordisp("error in updating qty");
+                                            errordisp("Error in updating qty");
                                         }else{
                                             database.query('insert into history set ? ',{name: name,inv_id:invid ,date:date ,user_id:values.loginuserid ,current_qty:result1[0].quantity ,qty_added: "-"+qty ,status:"sales" }, function (error, result) {
                                                 if (error) {
-                                                    errordisp("error in updating history");
+                                                    errordisp("Error in updating history");
                                                 }else{                                           
-                                                    errordisp("success");
+                                                    errordisp("Success");
                                                 }
                                             });
                                         }

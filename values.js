@@ -23,6 +23,8 @@ var searchboxval ="";
 
 var role = "";
 
+var accesstoken = "";
+
 module.exports.name;
 module.exports.email;
 module.exports.username;
@@ -42,3 +44,4 @@ module.exports.defaultshopname;
 module.exports.searchboxval;
 module.exports.loginuserid;
 module.exports.role;
+module.exports.accesstoken;

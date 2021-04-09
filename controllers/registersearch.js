@@ -16,12 +16,12 @@ exports.regsrc = (req,res) => {
             database.query('select * from login where state = "s" and '+search+' like ?',['%'+searchbox+'%'], function (error, result) {
                 if (error) {
                     console.log(error+" in searchbtn");
-                    errordisp("error in search");
+                    errordisp("Error in search");
                 }else if(!result[0]){
-                    errordisp("login does not exist");
+                    errordisp("Login does not exist");
                 }else {
                     console.log(result+ " searchbtn register sort and search");
-                    res.render('pages/register',{name: values.loginusername, datas: result,msg:"searched"});
+                    res.render('pages/register',{name: values.loginusername, datas: result,msg:"Searched"});
                 }
             });
 
@@ -69,12 +69,12 @@ exports.regsrc = (req,res) => {
         database.query('select * from login where state = "s" order by '+ search+' ASC', function (error, result) {
             if (error) {
                 console.log(error+" in sortbtn");
-                errordisp("error in sortqty");
+                errordisp("Error in sortqty");
             } else if(!result){
                 errordisp("No data to sort");
             }else{
                 console.log(result+ " sortbtn register sort and search");
-                res.render('pages/register',{name: values.loginusername, datas: result,msg:"sorted"});
+                res.render('pages/register',{name: values.loginusername, datas: result,msg:"Sorted"});
             }
         });
 

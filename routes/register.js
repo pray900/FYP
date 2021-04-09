@@ -6,9 +6,10 @@ const RegisterEdit = require('../controllers/registeredit');
 const regedtdel = require('../controllers/registeredtdel');
 const values = require('../values');
 const database = require('../database');
+const authmdlware = require('./../auth-middleware');
 
 module.exports = () => {
-    router.get("/", (req,res)=>{
+    router.get("/",authmdlware(["role:Owner"]), (req,res)=>{
 
             database.query('select * from login where state = "s"', function (error, result) {
                 if (error) {
@@ -21,21 +22,21 @@ module.exports = () => {
 
         //res.render('pages/register',{name: values.loginusername});
     });
-    router.get("/addUser", (req,res)=>{
+    router.get("/addUser",authmdlware(["role:Owner"]), (req,res)=>{
         res.render('pages/addRegister',{name: values.loginusername, msg: "", vals:{name:"", email:"", username:"", type:""}});
     });
 
     router.post("/search", RegisterSearch.regsrc);
 
-    router.post("/edit", RegisterEdit.regedit);
+    router.post("/edit",authmdlware(["role:Owner"]), RegisterEdit.regedit);
 
     // router.get("/editUser", (req,res)=>{
     //     res.render('pages/editRegister',{name: values.loginusername});
     // });
-    router.post("/registerUser", registerUser.register);
+    router.post("/registerUser",authmdlware(["role:Owner"]), registerUser.register);
 
-    router.get("/addqtybtn/:id", regedtdel.regedit);
-    router.get("/deletebtn/:id", regedtdel.regdel);
+    router.get("/addqtybtn/:id",authmdlware(["role:Owner"]), regedtdel.regedit);
+    router.get("/deletebtn/:id",authmdlware(["role:Owner"]), regedtdel.regdel);
 
     return router;
 };

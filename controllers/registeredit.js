@@ -11,9 +11,9 @@ exports.regedit = (req,res) => {
     database.query('update login set Name = ? , Email = ? , username = ? , Role = ? where id = ? and state = "s"', [name, email, username, type, mainid], (error, result) => {
         if (error) {
             console.log(error);
-            return res.render('pages/editRegister',{name: values.loginusername, datas: {id: mainid, Name: name, Email: email, Role: type, username: username}, msg:"error"});
+            return res.render('pages/editRegister',{name: values.loginusername, datas: {id: mainid, Name: name, Email: email, Role: type, username: username}, msg:"Error"});
         } else {
-            return res.render('pages/editRegister',{name: values.loginusername, datas: {id: mainid, Name: name, Email: email, Role: type, username: username}, msg:"login edited successfully"});
+            return res.render('pages/editRegister',{name: values.loginusername, datas: {id: mainid, Name: name, Email: email, Role: type, username: username}, msg:"Login edited successfully"});
         }
     })
 

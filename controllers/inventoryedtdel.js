@@ -12,7 +12,7 @@ exports.invedit = (req,res) => {
         database.query('select * from inventory where shop_id = ? and inv_id = ? and state = "s"',[reshopid, req.params.id], function (error, result) {
             if (error) {
                 console.log(error+" in addqtybtn");
-                errordisp("error in addqty");
+                errordisp("Error in addqty");
             } else if(!result[0]){
                 errordisp("Inv does not exist to add Inv");
             }else{
@@ -53,13 +53,13 @@ exports.invdel = (req,res) => {
             console.log(result.affectedRows+" res in deletebtn");
             if (error) {
                 console.log(error+" in deletebtn");
-                errordisp("error in delete");
+                errordisp("Error in delete");
             } 
             else if(result.affectedRows == 0){                   
                 errordisp("Inv does not exist to delete");
             }else{
                 console.log(result+ " deletebtn inv sort and search");
-                errordisp("row deleted successfully");
+                errordisp("Row deleted successfully");
             }
         });
     }

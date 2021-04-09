@@ -7,6 +7,7 @@ const shopselector = require('../controllers/shopselector');
 const invedtdel = require('../controllers/inventoryedtdel');
 const values = require('../values');
 const database = require('../database');
+const authmdlware = require('./../auth-middleware');
 
 module.exports = () => {
     router.get("/", (req,res)=>{
@@ -40,23 +41,23 @@ module.exports = () => {
 
     });
 
-    router.get("/addInv", (req,res)=>{
+    router.get("/addInv",authmdlware(["role:Inventory","role:Owner"]), (req,res)=>{
         res.render('pages/addInv',{name: values.loginusername,msg:"",pic:"",vals: {name :"", invtype: "", supplier: "", costprice: "", quantity:"", salesprice:""}, role: values.role});
     });
 
     router.post("/search", InventorySearch.invsrc);
 
-    router.post("/editInv", InventoryEdit.invedit);
+    router.post("/editInv",authmdlware(["role:Inventory","role:Owner"]), InventoryEdit.invedit);
 
-    router.post("/addInv", AddInventory.addInv);
+    router.post("/addInv",authmdlware(["role:Inventory","role:Owner"]), AddInventory.addInv);
 
 
     // router.get("/addQty", (req,res)=>{
     //     res.render('pages/addInv',{name: values.loginusername});
     //     res.render('pages/addInvQuantity',{name: values.loginusername});
     // });
-    router.get("/addqtybtn/:id", invedtdel.invedit);
-    router.get("/deletebtn/:id", invedtdel.invdel);
+    router.get("/addqtybtn/:id",authmdlware(["role:Inventory","role:Owner"]), invedtdel.invedit);
+    router.get("/deletebtn/:id",authmdlware(["role:Inventory","role:Owner"]), invedtdel.invdel);
     router.get("/historybtn/:id", invedtdel.invhist);
 
 

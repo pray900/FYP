@@ -7,6 +7,7 @@ const CustomerSearch = require('../controllers/customersearch');
 const custedtdel = require('../controllers/customeredtdel');
 const database = require('../database');
 const values = require('../values');
+const authmdlware = require('./../auth-middleware');
 
 module.exports = () => {
     router.get("/", (req,res)=>{
@@ -29,7 +30,7 @@ module.exports = () => {
 
         //res.render('pages/customer',{name: values.loginusername});
     });
-    router.get("/addCust", (req,res)=>{
+    router.get("/addCust",authmdlware(["role:Sales","role:Owner"]), (req,res)=>{
         res.render('pages/addCustomer',{name: values.loginusername,vals:{name:"", email:"", number:"", address:""}, msg:"", role: values.role});
     });
 
@@ -39,12 +40,12 @@ module.exports = () => {
     //     res.render('pages/editCust',{name: values.loginusername});
     // });
 
-    router.post("/addCust", AddCustomer.addCustomer);
+    router.post("/addCust",authmdlware(["role:Sales","role:Owner"]), AddCustomer.addCustomer);
 
-    router.post("/editcust", EditCustomer.editCustomer);
+    router.post("/editcust",authmdlware(["role:Sales","role:Owner"]), EditCustomer.editCustomer);
 
-    router.get("/editbtn/:id", custedtdel.custedit);
-    router.get("/deletebtn/:id", custedtdel.custdel);
+    router.get("/editbtn/:id",authmdlware(["role:Sales","role:Owner"]), custedtdel.custedit);
+    router.get("/deletebtn/:id",authmdlware(["role:Sales","role:Owner"]), custedtdel.custdel);
 
     return router;
 };

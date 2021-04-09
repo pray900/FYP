@@ -12,10 +12,10 @@
     <title>Home</title>
 
     <!-- Custom fonts for this template-->
-    <link href="/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
     <!-- Custom styles for this template-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link href="/css/overall.css" rel="stylesheet">
     <link href="/css/home.css" rel="stylesheet">
 
@@ -37,9 +37,6 @@
 
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center">
-                <div class="sidebar-brand-icon rotate-n-15">
-                    <i class="fas fa-laugh-wink"></i>
-                </div>
                 <div class="sidebar-brand-text mx-3">Home</div>
             </a>
 
@@ -49,7 +46,6 @@
             <!-- Nav Item - Dashboard -->
             <li class="nav-item active">
                 <a class="nav-link" href="/home">
-                    <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Home</span></a>
             </li>
 
@@ -59,7 +55,6 @@
             <!-- Nav Item - Charts -->
             <li class="nav-item">
                 <a class="nav-link" href="/inventory">
-                    <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Inventory</span></a>
             </li>
 
@@ -68,7 +63,6 @@
             <!-- Nav Item - Charts -->
             <li class="nav-item">
                 <a class="nav-link" href="/sales">
-                    <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Sales</span></a>
             </li>
 
@@ -77,7 +71,6 @@
             <!-- Nav Item - Charts -->
             <li class="nav-item">
                 <a class="nav-link" href="/customer">
-                    <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Customer</span></a>
             </li>
 
@@ -86,7 +79,6 @@
             <!-- Nav Item - Tables -->
             <li class="nav-item">
                 <a class="nav-link" href="/logs">
-                    <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Logs</span></a>
             </li>
 
@@ -97,7 +89,6 @@
             
             <li class="nav-item" style= <% if (role.toUpperCase() =="INVENTORY" || role.toUpperCase() == "SALES") { %> <%= "display:none;" %> <% } %> >
                 <a class="nav-link" href="/register">
-                    <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Register</span></a>
             </li>
 
@@ -114,11 +105,14 @@
 
                 <!-- Topbar -->
                 <nav class="navbar justify-content-between navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+                    <!-- Sidebar Toggle (Topbar) -->
+                <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+                    <i class="fas fa-bars"></i>
+                </button>
                     <div class="container-fluid" >
                         <p>Hello, <%= name %></p>
                     </div>
-                    <a href="/logout" class=" d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
-                                class="fas fa-download fa-sm text-white-50"></i> Logout</a>
+                    <a href="/logout" class=" d-sm-inline-block btn btn-sm btn-primary shadow-sm">Logout</a>
                 </nav>
                 <!-- End of Topbar -->
 
@@ -181,7 +175,7 @@
                                             <div class="h5 mb-0 font-weight-bold text-gray-800"><%= ts %></div>
                                         </div>
                                         <div class="col-auto">
-                                            <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                                            <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
                                         </div>
                                     </div>
                                 </div>
@@ -242,7 +236,7 @@
                                             <div class="h5 mb-0 font-weight-bold text-gray-800"><%= tc %></div>
                                         </div>
                                         <div class="col-auto">
-                                            <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                                            <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
                                         </div>
                                     </div>
                                 </div>
@@ -260,7 +254,7 @@
                                             <div class="h5 mb-0 font-weight-bold text-gray-800"><%= ti %></div>
                                         </div>
                                         <div class="col-auto">
-                                            <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                                            <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
                                         </div>
                                     </div>
                                 </div>
@@ -353,6 +347,36 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
+    <script>
+        (function($) {
+  "use strict"; // Start of use strict
+
+  // Toggle the side navigation
+  $("#sidebarToggle, #sidebarToggleTop").on('click', function(e) {
+    $("body").toggleClass("sidebar-toggled");
+    $(".sidebar").toggleClass("toggled");
+    if ($(".sidebar").hasClass("toggled")) {
+      $('.sidebar .collapse').collapse('hide');
+    };
+  });
+
+  // Close any open menu accordions when window is resized below 768px
+  $(window).resize(function() {
+    if ($(window).width() < 768) {
+      $('.sidebar .collapse').collapse('hide');
+    };
+    
+    // Toggle the side navigation when window is resized below 480px
+    if ($(window).width() < 480 && !$(".sidebar").hasClass("toggled")) {
+      $("body").addClass("sidebar-toggled");
+      $(".sidebar").addClass("toggled");
+      $('.sidebar .collapse').collapse('hide');
+    };
+  });
+
+})(jQuery);
+    </script>
+    
 </body>
 
 </html>

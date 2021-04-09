@@ -4,7 +4,7 @@ const forgotpassword = require('../controllers/forgotpassword');
 
 module.exports = () => {
     router.get("/", (req,res)=>{
-        res.render('pages/forgotpassword');
+        res.render('pages/forgotpassword',{msg: ""});
     });
 
     router.post("/forgotpasswordpost", forgotpassword.forgotpassword);

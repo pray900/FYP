@@ -24,7 +24,7 @@ exports.editCustomer = (req,res) => {
                 console.log(error);
                 return res.render('pages/editCustomer',{name: values.loginusername, datas: { customer_id: mainid, name: name, email: email, address: address, number: number}, msg:"error", role: values.role});
             } else {
-                return res.render('pages/editCustomer',{name: values.loginusername, datas: { customer_id: mainid, name: name, email: email, address: address, number: number}, msg:"customer successfully edited", role: values.role});
+                return res.render('pages/editCustomer',{name: values.loginusername, datas: { customer_id: mainid, name: name, email: email, address: address, number: number}, msg:"Customer successfully edited", role: values.role});
             }
         })
 

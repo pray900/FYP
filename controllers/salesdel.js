@@ -13,12 +13,12 @@ exports.salesdel = (req,res) => {
             console.log(result.affectedRows+" res in deletebtn");
             if (error) {
                 console.log(error+" in deletebtn");
-                errordisp("error in delete");
+                errordisp("Error in delete");
             } else if(result.affectedRows == 0){                   
-                errordisp("sale does not exist to delete");
+                errordisp("Sale does not exist to delete");
             }else{
                 console.log(result+ " deletebtn sale sort and search");
-                errordisp("row deleted successfully");
+                errordisp("Row deleted successfully");
             }
         });
     }
